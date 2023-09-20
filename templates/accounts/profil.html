@@ -1,0 +1,151 @@
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+<!-- <h2>{{ message }}</h2> -->
+
+
+
+<style>
+    /* Style de la barre de progression */
+    .progress-container {
+      width: 100%;
+      background-color: #f1f1f1;
+    }
+    
+    .progress-bar {
+      width: 0;
+      height: 30px;
+      background-color: #4caf50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+    
+    /* Style pour cacher les étapes sauf la première */
+    .template {
+      display: none;
+    }
+    
+    .active-template {
+      display: block;
+    }
+
+    .error{
+      color: red;
+    }
+    </style>
+
+<center class="formcenter">
+    {% for message in messages %}
+        {{  message }}
+    {% endfor %}
+    <h2>{{ msg }}</h2>
+
+
+    
+
+
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+
+        <h1>Ajout de Commandes</h1>
+        <!--
+            - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+            - form  a deux  attribut s:
+                - action : execute un mout de code 
+                - method : 
+                        - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+        -->
+       
+       
+        
+        <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
+        <strong class="error">{{ message }}</strong><br>
+
+
+        <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+
+
+        <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+
+        <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="number" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Dos"  > Mesure du dos<input type="number" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+
+
+        <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+
+
+        <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+
+        <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Bras"  > Longueur des bras <input type="number" name="Longueur_Bras" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+        <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+
+
+       
+        <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
+    </form> 
+
+</center>
+
+
+  
+    
+  
+{% endblock %}
+

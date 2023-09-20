@@ -1,0 +1,66 @@
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+
+
+<h1>commandes Specifiees</h1>
+
+<a href="{% url 'facturePdf' facture.id %}">Creation de PDF</a>
+
+<table >
+    <caption>Facture n°{{ facture.id }}</caption>
+    <tr>
+        <th> Date</th>
+        <th> Client</th>
+        <th> Telephone</th>
+        <th> Modele</th>
+        <th> Prix de la couture</th>
+        <th> Avance</th>
+        <th> Reste a solder</th>
+        
+    </tr>
+
+
+    <tr>
+        <td> {{ facture.Date}} </a></td>
+        <td> {{ facture.Nom  }}</td>
+        <td> {{ facture.Telephone  }}</td>
+      
+
+        <td> {{ facture.Modele_couture  }}</td>
+        <td> {{ facture.Prix_Couture  }}</td>
+        <td> {{ facture.Avance  }}</td>
+        <td> {{ facture.Solde }}</td>
+    </tr>
+
+</table>
+<p><a href="{% url 'liste_commande' %}"> Liste des commandes</a></p>
+
+
+
+<style>
+  /* Style pour le tableau */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #8a1515;
+  }
+</style>
+
+
+{% endblock %}
+

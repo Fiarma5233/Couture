@@ -1,0 +1,793 @@
+
+{% comment %}
+<!-- Conteneur de la barre de progression -->
+<div class="progress-container">
+    <div class="progress-bar" style="width: 0%;">Étape 1</div>
+</div> 
+
+<!-- Première étape -->
+<div class="template active-template">
+    <h2>Étape 1</h2>
+    <form>
+      <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
+      <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+
+        <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="number" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Dos"  > Mesure du dos<input type="number" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+        <strong class="error">{{ messages.error }}</strong><br>
+
+        <button onclick="nextStep(1)">Étape suivante</button>
+    </form>
+  </div> 
+
+  <!-- Deuxième étape -->
+<div class="template">
+    <h2>Étape 2</h2>
+    <form>
+      <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <button onclick="nextStep(2)">Étape suivante</button>
+    </form>
+  </div>
+
+
+  <!-- Troisième étape -->
+<div class="template">
+    <h2>Étape 3</h2>
+    <form>
+        <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <button onclick="nextStep(3)">Étape suivante</button>
+    </form>
+  </div>
+
+
+  <!-- Quatrième étape -->
+<div class="template">
+    <h2>Étape 4</h2>
+    <form>
+      
+        <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Bras"  > Longueur des bras <input type="number" name="Longueur_Bras" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+        <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+        <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <button onclick="nextStep(4)">Soumettre</button>
+    </form>
+  </div>
+
+
+  <script>
+    let currentStep = 1;
+    
+    function nextStep(step) {
+      if (step === currentStep && step <= 3) {
+        currentStep++;
+        document.querySelector('.progress-bar').style.width = (step * 33.33) + '%';
+        document.querySelector('.progress-bar').textContent = 'Étape ' + (step + 1);
+    
+        // Cacher l'étape actuelle et afficher la suivante
+        document.querySelector('.template.active-template').classList.remove('active-template');
+        document.querySelector('.template:nth-child(' + (step + 1) + ')').classList.add('active-template');
+      }
+    }
+    </script>
+  {% endcomment %}
+
+
+
+
+
+  <div>
+    <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
+
+
+     
+       
+
+    </div>
+       
+    
+
+    <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+  
+
+
+    <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
+   
+
+    <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="number" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Dos"  > Mesure du dos<input type="number" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Bras"  > Longueur des bras <input type="number" name="Longueur_Bras" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+
+
+   
+    <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'accounts:commande' %}"> Se connecter</a></p>
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var etapes = ['etape1', 'etape2', 'etape3'];
+      var etapeActuelle = 0;
+  
+      // Fonction de validation pour chaque étape
+      function validerEtape(etape) {
+          var valid = true;
+  
+          for (var i = 1; i <= 3; i++) {
+              var champId = 'champ' + (etape * 3 + i);
+              var messageId = 'messageChamp' + (etape * 3 + i);
+              var champ = document.getElementById(champId).value;
+  
+              // Valider le champ en fonction de l'étape
+              if (etape === 0 && i === 1) {
+                  // Étape 1 : Chiffres uniquement
+                  if (!/^\d+$/.test(champ)) {
+                      document.getElementById(messageId).textContent = 'Champ ' + (etape * 3 + i) + ' doit contenir uniquement des chiffres.';
+                      valid = false;
+                  }
+              } else if (etape === 0 && i === 2) {
+                  // Étape 1 : Nombre négatif
+                  var nombre = parseFloat(champ);
+                  if (isNaN(nombre) || nombre >= 0) {
+                      document.getElementById(messageId).textContent = 'Champ ' + (etape * 3 + i) + ' doit être un nombre négatif.';
+                      valid = false;
+                  }
+              } else if (etape === 0 && i === 3) {
+                  // Étape 1 : Date au format YYYY-MM-DD
+                  if (!/^\d{4}-\d{2}-\d{2}$/.test(champ)) {
+                      document.getElementById(messageId).textContent = 'Champ ' + (etape * 3 + i) + ' doit être au format YYYY-MM-DD.';
+                      valid = false;
+                  }
+              } else if (etape === 1 && i === 1) {
+                  // Étape 2 : Autres validations pour Champ 4
+                  // ...
+              } else if (etape === 1 && i === 2) {
+                  // Étape 2 : Autres validations pour Champ 5
+                  // ...
+              } else if (etape === 1 && i === 3) {
+                  // Étape 2 : Autres validations pour Champ 6
+                  // ...
+              } else if (etape === 2 && i === 1) {
+                  // Étape 3 : Autres validations pour Champ 7
+                  // ...
+              } else if (etape === 2 && i === 2) {
+                  // Étape 3 : Autres validations pour Champ 8
+                  // ...
+              } else if (etape === 2 && i === 3) {
+                  // Étape 3 : Autres validations pour Champ 9
+                  // ...
+              }
+          }
+  
+          return valid;
+      }
+  
+      // Fonction pour mettre à jour la barre de progression
+      function mettreAJourBarreProgression() {
+          var pourcentage = (etapeActuelle + 1) / etapes.length * 100;
+          document.querySelector('.progress-indicator').style.width = pourcentage + '%';
+      }
+  
+      // Afficher l'étape initiale et la barre de progression
+      document.getElementById(etapes[etapeActuelle]).style.display = 'block';
+      mettreAJourBarreProgression();
+  
+      // Bouton Suivant
+      document.getElementById('boutonSuivant').addEventListener('click', function () {
+          // Valider l'étape actuelle
+          if (validerEtape(etapeActuelle)) {
+              document.getElementById(etapes[etapeActuelle]).style.display = 'none'; // Masquer l'étape actuelle
+              etapeActuelle++; // Passer à l'étape suivante
+              document.getElementById(etapes[etapeActuelle]).style.display = 'block'; // Afficher l'étape suivante
+  
+              // Mettre à jour la barre de progression
+              mettreAJourBarreProgression();
+  
+              // Masquer le bouton Précédent lorsqu'on est à la première étape
+              if (etapeActuelle === 0) {
+                  document.getElementById('boutonPrecedent').style.display = 'none';
+              } else {
+                  document.getElementById('boutonPrecedent').style.display = 'inline-block';
+              }
+  
+              // Masquer le bouton Suivant lorsqu'on atteint la dernière étape
+              if (etapeActuelle === etapes.length - 1) {
+                  document.getElementById('boutonSuivant').style.display = 'none';
+              } else {
+                  document.getElementById('boutonSuivant').style.display = 'inline-block';
+              }
+          }
+      });
+  
+      // Bouton Précédent
+      document.getElementById('boutonPrecedent').addEventListener('click', function () {
+          document.getElementById(etapes[etapeActuelle]).style.display = 'none'; // Masquer l'étape actuelle
+          etapeActuelle--; // Revenir à l'étape précédente
+          document.getElementById(etapes[etapeActuelle]).style.display = 'block'; // Afficher l'étape précédente
+  
+          // Mettre à jour la barre de progression
+          mettreAJourBarreProgression();
+  
+          // Masquer le bouton Précédent lorsqu'on est à la première étape
+          if (etapeActuelle === 0) {
+              document.getElementById('boutonPrecedent').style.display = 'none';
+          } else {
+              document.getElementById('boutonPrecedent').style.display = 'inline-block';
+          }
+  
+          // Afficher le bouton Suivant
+          document.getElementById('boutonSuivant').style.display = 'inline-block';
+      });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 10px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+
+    <!--<style>
+      /* Styles CSS pour la barre de progression */
+        .progress-bar {
+            width: 100%;
+            background-color: #ccc;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-indicator {
+            width: 0%;
+            height: 100%;
+            background-color: #007BFF;
+            transition: width 0.3s ease;
+        }
+
+        /* Styles CSS pour le formulaire et les messages d'erreur */
+        .form-group {
+            display: none;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .erreur {
+            color: red;
+        }
+
+    </style>-->
+
+<center class="formcenter">
+
+    <h2>{{ msg }}</h2>
+    <div class="container">
+      <h1>Formulaire Paginé</h1>
+      <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+      </div>
+      <form action="" method="post" class="form" id="formulaire">
+        {% csrf_token %}
+
+        <h1>a jout de Commande</h1>
+
+       
+        <!----
+            - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+            - form  a deux  attribut s:
+                - action : execute un mout de code 
+                - method : 
+             
+                - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+    
+       <strong class="error">{{ Nom_erreur }} Salut</strong><br>
+    
+            -->
+
+        <!-- Barre de progression -->
+       
+
+          <div class="form-group ">
+            <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
+
+            <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+          
+            <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
+        
+            <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="number" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Dos"  > Mesure du dos<input type="number" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+            
+          </div>
+          
+          <div class="form-group hidden">
+            <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+          </div>
+
+
+          <div class="form-group hidden">
+            <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+          </div>
+
+        
+          <div class="form-group hidden">
+            <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+          </div>
+      
+          <div class="form-group hidden" >
+            <label for="Longueur_Bras"  > Longueur des bras <input type="number" name="Longueur_Bras" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+            <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    
+            <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'accounts:commande' %}"> Se connecter</a></p>
+          </div>
+       
+
+
+          <!-- Boutons de navigation -->
+          <button id="precedent" class="hidden">Précédent</button>
+          <button id="suivant">Suivant</button>
+          <button id="submit" class="hidden">Soumettre</button>
+        </div>
+
+      </form>
+    </div>
+
+</center>
+    
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const formulaire = document.getElementById('formulaire');
+    const groupes = formulaire.querySelectorAll('.form-group');
+    const precedent = document.getElementById('precedent');
+    const suivant = document.getElementById('suivant');
+    const submit = document.getElementById('submit');
+    const progressBar = document.querySelector('.progress-bar');
+    let etapeActuelle = 0;
+
+    // Fonction pour afficher l'étape suivante
+    function afficherEtape(etape) {
+        groupes[etapeActuelle].classList.remove('active');
+        groupes[etape].classList.add('active');
+        etapeActuelle = etape;
+
+        // Mettre à jour la barre de progression
+        const pourcentageProgression = ((etapeActuelle + 1) / groupes.length) * 100;
+        progressBar.style.width = pourcentageProgression + '%';
+
+        // Afficher ou masquer les boutons de navigation
+        precedent.classList.toggle('hidden', etapeActuelle === 0);
+        suivant.classList.toggle('hidden', etapeActuelle === groupes.length - 1);
+        submit.classList.toggle('hidden', etapeActuelle !== groupes.length - 1);
+    }
+
+    // Bouton Suivant
+    suivant.addEventListener('click', function () {
+        if (etapeActuelle < groupes.length - 1) {
+            afficherEtape(etapeActuelle + 1);
+        }
+    });
+
+    // Bouton Précédent
+    precedent.addEventListener('click', function () {
+        if (etapeActuelle > 0) {
+            afficherEtape(etapeActuelle - 1);
+        }
+    });
+
+    // Bouton Soumettre
+    submit.addEventListener('click', function () {
+        // Soumettre le formulaire ici si nécessaire
+    });
+
+    // Afficher la première étape au chargement de la page
+    afficherEtape(0);
+});
+
+</script>
+
+<!--<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const formulaire = document.getElementById('formulaire');
+    const groupes = formulaire.querySelectorAll('.form-group');
+    const progressBar = document.querySelector('.progress-bar');
+    let etapeActuelle = 0;
+
+    // Fonction pour afficher l'étape actuelle
+    function afficherEtape(etape) {
+        groupes.forEach((groupe, index) => {
+            groupe.style.display = index === etape ? 'block' : 'none';
+        });
+        etapeActuelle = etape;
+
+        // Mettre à jour la barre de progression
+        const pourcentageProgression = ((etapeActuelle + 1) / groupes.length) * 100;
+        progressBar.style.width = pourcentageProgression + '%';
+
+        // Afficher ou masquer les boutons de navigation
+        const precedent = document.getElementById('precedent');
+        const suivant = document.getElementById('suivant');
+        const submit = document.getElementById('submit');
+
+        precedent.style.display = etapeActuelle === 0 ? 'none' : 'inline-block';
+        suivant.style.display = etapeActuelle < groupes.length - 1 ? 'inline-block' : 'none';
+        submit.style.display = etapeActuelle === groupes.length - 1 ? 'inline-block' : 'none';
+    }
+
+    // Bouton Suivant
+    document.getElementById('suivant').addEventListener('click', function () {
+        if (etapeActuelle < groupes.length - 1) {
+            afficherEtape(etapeActuelle + 1);
+        }
+    });
+
+    // Bouton Précédent
+    document.getElementById('precedent').addEventListener('click', function () {
+        if (etapeActuelle > 0) {
+            afficherEtape(etapeActuelle - 1);
+        }
+    });
+
+    // Bouton Soumettre
+    document.getElementById('submit').addEventListener('click', function () {
+        // Soumettre le formulaire ici si nécessaire
+    });
+
+    // Afficher la première étape au chargement de la page
+    afficherEtape(0);
+});
+
+</script>-->
+
+
+<!--<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var etapes = ['etape1', 'etape2', 'etape3', 'etape4', 'etape5'];
+    var etapeActuelle = 0;
+
+    // Fonction de validation pour chaque étape
+    function validerEtape(etape) {
+        var valid = true;
+
+        for (var i = 1; i <= 5; i++) {
+            var champId = 'champ' + (etape * 5 + i);
+            var messageId = 'messageChamp' + (etape * 5 + i);
+            var champ = document.getElementById(champId).value;
+
+            // Valider le champ en fonction de l'étape (ajoutez vos propres validations ici)
+            if (etape === 0 && i === 1) {
+                // Exemple : Champ 1 doit contenir uniquement des chiffres
+                if (!/^\d+$/.test(champ)) {
+                    document.getElementById(messageId).textContent = 'Champ ' + (etape * 5 + i) + ' doit contenir uniquement des chiffres.';
+                    valid = false;
+                }
+            }
+            // Ajoutez des validations pour les autres champs et étapes ici...
+
+            // Effacez les messages d'erreur si le champ est valide
+            if (valid) {
+                document.getElementById(messageId).textContent = '';
+            }
+        }
+
+        return valid;
+    }
+
+    // Fonction pour mettre à jour la barre de progression
+    function mettreAJourBarreProgression() {
+        var pourcentage = (etapeActuelle + 1) / etapes.length * 100;
+        document.querySelector('.progress-indicator').style.width = pourcentage + '%';
+    }
+
+    // Afficher l'étape initiale et la barre de progression
+    document.getElementById(etapes[etapeActuelle]).style.display = 'block';
+    mettreAJourBarreProgression();
+
+    // Bouton Suivant
+    document.getElementById('boutonSuivant').addEventListener('click', function () {
+        // Valider l'étape actuelle
+        if (validerEtape(etapeActuelle)) {
+            document.getElementById(etapes[etapeActuelle]).style.display = 'none'; // Masquer l'étape actuelle
+            etapeActuelle++; // Passer à l'étape suivante
+            document.getElementById(etapes[etapeActuelle]).style.display = 'block'; // Afficher l'étape suivante
+
+            // Mettre à jour la barre de progression
+            mettreAJourBarreProgression();
+
+            // Masquer le bouton Précédent lorsqu'on est à la première étape
+            if (etapeActuelle === 0) {
+                document.getElementById('boutonPrecedent').style.display = 'none';
+            } else {
+                document.getElementById('boutonPrecedent').style.display = 'inline-block';
+            }
+        }
+    });
+
+    // Bouton Précédent
+    document.getElementById('boutonPrecedent').addEventListener('click', function () {
+        document.getElementById(etapes[etapeActuelle]).style.display = 'none'; // Masquer l'étape actuelle
+        etapeActuelle--; // Revenir à l'étape précédente
+        document.getElementById(etapes[etapeActuelle]).style.display = 'block'; // Afficher l'étape précédente
+
+        // Mettre à jour la barre de progression
+        mettreAJourBarreProgression();
+
+        // Masquer le bouton Précédent lorsqu'on est à la première étape
+        if (etapeActuelle === 0) {
+            document.getElementById('boutonPrecedent').style.display = 'none';
+        } else {
+            document.getElementById('boutonPrecedent').style.display = 'inline-block';
+        }
+
+        // Afficher le bouton Suivant
+        document.getElementById('boutonSuivant').style.display = 'inline-block';
+    });
+});
+
+</script>-->
+
+{% endblock %}
+
+
+
+/*h1{
+    color: brown;
+    text-align: justify;
+    width: auto;
+    padding: auto;
+}
+
+label{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-style: italic;
+  
+}
+.formulaire{
+    color: red;
+}*/
+
+/*#nom, #prenom, #password, #passwordconfirm, #entreprise, #email{
+    border: 92px;
+    border-radius: 0cqmax;
+    height: 30px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow:black;
+   
+}
+*/
+  /*.form{
+  text-align: center;
+    position: relative;
+    text-anchor: middle;
+    color: red;
+    background-color: blueviolet;
+}*/
+
+
+h1{
+    color: rgb(56, 17, 197);
+    text-align: justify;
+    width: auto;
+    padding: auto;
+}
+
+
+
+
+/*body{
+    background-color: rgb(168, 188, 140);
+}
+
+#nom, #prenom, #password, #passwordconfirm, #entreprise, #email{
+    border: 92px;
+    border-radius: 0cqmax;
+    height: 30px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow:black;
+   
+}*/

@@ -1,0 +1,72 @@
+
+
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+<!-- <h2>{{ message }}</h2> -->
+
+
+    <center>
+
+        <table>
+            <caption>Liste des Clients </caption>
+            <tr>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Interventions</th>
+                <th>Date</th>
+
+
+
+            </tr>
+            {% for client in clients %}
+
+            <tr>
+                <td><a href="{% url 'profil' profil_id=client.Telephone %}">{{ client.Nom|upper }}</a></td>
+                <td>{{ client.Telephone }}</td>
+                <td>{{ client.Interventions }}</td>
+                <td>{{ client.Date_Created }}</td>
+
+
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+        
+
+    </center>
+      
+
+       
+
+</center>
+
+
+<style>
+    /* Style pour le tableau */
+    table {
+      border-collapse: collapse; /* Fusionne les bordures adjacentes en une seule */
+      width: 100%; /* Largeur du tableau */
+    }
+    
+    /* Style pour les cellules du tableau */
+    th, td {
+      border: 1px solid black; /* Bordure de 1 pixel solide noire */
+      padding: 8px; /* Espace intérieur des cellules */
+      text-align: left; /* Alignement du texte */
+    }
+    
+    /* Style pour l'en-tête du tableau */
+    th {
+      background-color: #c4e410; /* Couleur de fond pour l'en-tête */
+    }
+    caption{ color: blue;}
+  </style>
+{% endblock %}
+

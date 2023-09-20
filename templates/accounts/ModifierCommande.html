@@ -1,0 +1,272 @@
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+<!-- <h2>{{ message }}</h2> -->
+
+
+<!--<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+  
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .form-group {
+        display: none;
+        margin-bottom: 20px;
+    }
+  
+    .hidden {
+        display: none;
+    }
+  
+    h1 {
+        text-align: center;
+    }
+  
+    .progress-bar-container {
+        height: 20px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+  
+    .progress-bar {
+        height: 100%;
+        width: 0;
+        background-color: #4caf50;
+        border-radius: 10px;
+        transition: width 0.3s ease-in-out;
+    }
+  
+    .navigation {
+        text-align: center;
+        margin-top: 20px;
+    }
+  
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+  
+    .error-message{
+      color: red;
+    }
+  
+  </style>-->
+
+
+<style>
+     .error{
+      color: red;
+    }
+</style>
+  
+   
+
+<center class="formcenter">
+    
+
+
+
+    <h1>Modifier votre commande </h1>
+
+
+<form action="" method="post" class="form">
+    {% csrf_token %}
+
+    <!--
+        - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+        - form  a deux  attribut s:
+            - action : execute un mout de code 
+            - method : 
+                    - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+    -->
+
+        <label for="Nom" > Nom </label>   
+        <input type="text"  name="Nom" id="nom" value="{{ commande.Nom }}"> 
+        <br> 
+        <strong class="error">{{ nomError }} </strong><br>
+        
+        
+        <label for="Telephone"  > Telephone </label>
+        <input type="number" name="Telephone" value="{{ commande.Telephone }}" id="Telephone" > 
+        <br>
+        <strong class="error">{{ telError }} </strong><br>
+          
+        <label for="Modele_Couture" > Modele de la couture  </label> 
+        <input type="text"  name="Modele_Couture" value="{{ commande.Modele_Couture }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ modele }} </strong><br>
+  
+
+        <label for="Nombre_Pagnes"  > Nombre de pagnes </label> 
+        <input type="number" name="Nombre_Pagnes"  value="{{ commande.Nombre_Pagnes }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ pagne }} </strong><br>
+  
+        <label for="Dos"  > Mesure du dos </label> 
+        <input type="number" name="Dos"  value="{{ commande.Dos }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ dos }} </strong><br>
+
+
+        <label for="Epaule"  > Mesure de l'epaule  </label> 
+        <input type="number" name="Epaule"   value="{{ commande.Epaule }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ epaule }} </strong><br>
+
+        <label for="Poitrine"  > Mesure de la poitrine  </label>
+        <input type="number" name="Poitrine"  value="{{ commande.Poitrine }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ poitrine }} </strong><br>
+  
+
+
+
+        <label for="Longueur_Manche"  > Longueur de la manche  </label>
+        <input type="number" name="Longueur_Manche"  value="{{ commande.Longueur_Manche }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ lgm }} </strong><br>
+  
+        <label for="Tour_Manche"  > Tour de la manche </label>
+        <input type="number" name="Tour_Manche"  value="{{ commande.Tour_Manche }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ trm }} </strong><br>
+  
+        <label for="Longueur_Taille"  >  Longueur de la taille</label> 
+        <input type="number" name="Longueur_Taille"  value="{{ commande.Longueur_Taille }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ lgt }} </strong><br>
+
+
+        <label for="Col"  > Col </label>
+        <input type="number" name="Col"  value="{{ commande.Col }}"  id="Col" >
+        <br> 
+        <strong class="error">{{ col }} </strong><br>
+
+
+        <label for="Tour_Taille"  > Tour de la taille </label>
+        <input type="number" name="Tour_Taille"  value="{{ commande.Tour_Taille }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ trt }} </strong><br>
+  
+        <label for="Pince_longueur_seins"  >Pince de la longueur aux seins  </label> 
+        <input type="number" name="Pince_longueur_seins"  value="{{ commande.Pince_longueur_seins }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ pls }} </strong><br>
+  
+        <label for="Longueur_Camisole"  > Longueur de la camisole </label>
+        <input type="number" name="Longueur_Camisole"  value="{{ commande.Longueur_Camisole }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ lgc }} </strong><br>
+    
+
+        <label for="Longueur_Robe"  > Longueur de la robe </label> 
+        <input type="number" name="Longueur_Robe"  value="{{ commande.Longueur_Robe }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ lgr }} </strong><br>
+  
+        <label for="Frappe"  >Frappe  </label> 
+        <input type="number" name="Frappe"  value="{{ commande.Frappe }}"  id="Frappe" >
+        <br> 
+        <strong class="error">{{ frappe }} </strong><br>
+  
+
+        <label for="Longueur_Chemise"  > Longueur de la chemise </label>
+        <input type="number" name="Longueur_Chemise"  value="{{ commande.Longueur_Chemise }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ lgch }} </strong><br>
+  
+        <label for="Messure_Bassin"  > Longueur du bassin</label> 
+        <input type="number" name="Messure_Bassin" value="{{ commande.Messure_Bassin }}" id="nom" > 
+        <br> 
+        <strong class="error">{{ mb }} </strong><br>
+  
+        <label for="Mesure_Ceinture"  > Longueur de la ceinture  </label> 
+        <input type="number" name="Mesure_Ceinture"  value="{{ commande.Mesure_Ceinture }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ mc }} </strong><br>
+  
+        <label for="Mesure_Cuisse"  > Longueur de la cuisse </label> 
+        <input type="number" name="Mesure_Cuisse"  value="{{ commande.Mesure_Cuisse }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ mcu }} </strong><br>
+
+
+        <label for="Mesure_Genoux"  > Longueur des genoux </label> 
+        <input type="number" name="Mesure_Genoux"  value="{{ commande.Mesure_Genoux }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ mg }} </strong><br>
+
+
+
+        <label for="Longeur_Jupe"  > Longueur de la jupe  </label> 
+        <input type="number" name="Longeur_Jupe"  value="{{ commande.Longeur_Jupe }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ lgj }} </strong><br>
+        
+        <label for="Longueur_Poignet"  > Longueur du poignet  </label> 
+        <input type="number" name="Longueur_Poignet"  value="{{ commande.Longueur_Poignet }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ lgpo }} </strong><br>
+  
+        <label for="Longueur_Pantalon"  > Longueur Pantalon   </label> 
+        <input type="number" name="Longueur_Pantalon"  value="{{ commande.Longueur_Pantalon }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ lgpa }} </strong><br>
+  
+  
+        <label for="Bas"  > Bas  </label> 
+        <input type="number" name="Bas"  value="{{ commande.Bas }}"  id="Bas" >
+        <br> 
+        <strong class="error">{{ bas }} </strong><br>
+  
+
+        <label for="Prix_Couture"  > Prix de la couture </label>
+        <input type="number" name="Prix_Couture"  value="{{ commande.Prix_Couture }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ pc }} </strong><br>
+  
+        <label for="Avance"  >Avance </label> 
+        <input type="number" name="Avance"  value="{{ commande.Avance }}"  id="nom" >
+        <br> 
+        <strong class="error">{{ avance }} </strong><br>
+
+
+        <label for="Date_Retrait_Model"  > Date de retrait </label>
+        <input type="date" name="Date_Retrait_Model"  pattern="\d{4}-\d{2}-\d{2}"  value="{{ commande.Date_Retrait_Model }}"  id="nom" > 
+        <br> 
+        <strong class="error">{{ dateError }} </strong><br>
+
+
+
+        <input type="submit" value="Enregistrer les modifications" id="sub">   <p><a href="{% url 'liste_commande' %}"> Se connecter</a></p>
+
+
+    
+</form>
+
+
+</center>
+
+
+
+
+{% endblock %}
+

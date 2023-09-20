@@ -1,0 +1,26 @@
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+
+
+<h1>Home page</h1>
+<h2>{{ greeting }}</h2>
+
+{% if user.is_authenticated %} 
+    <h2>Salut {{ Firstname }}</h2>
+    <p><a href="{% url 'deconnexion' %}">Se deconnecter </a></p>
+
+{% else %}
+    <p><a href="{% url 'connexion' %}">Se connecter si vous avez  deja un compte</a></p>
+    <p><a href="{% url 'inscription' %}"> S'inscrire si vous n'avez pas encore de compte</a></p>
+
+
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,111 @@
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+
+
+<h1>Les 5 rendez-vous les plus proches</h1>
+<p><a href="{% url 'commande' %}"> Ajouter une commande</a></p>
+<p><a href="{% url 'client' %}"> Voir les clients</a></p>
+
+
+
+<table>
+    <caption >Les 5 rendez-vous les plus proches</caption>
+    <tr>
+        <th> Date de retrait</th>
+        <th> Client</th>
+        <th> Telephone</th>
+        <th> Modele</th>
+        <th> Nombre de pagnes</th>
+        <th>  Mesure du dos</th>
+        <th> Mesure de l'epaule</th>
+        <th>  Mesure de la poitrine</th>
+        <th>  Longueur de la manche</th>
+        <th> Tour de la manche</th>
+        <th> Longueur de la taille</th>
+        <th> Tour de la taille</th>
+        <th> Pince de la longueur aux seins</th>
+        <th> Longueur de la camisole</th>
+        <th> Longueur de la robe </th>
+        <th>  Longueur de la chemise</th>
+        <th> Longueur du bassin</th>
+        <th> Longueur de la ceinture</th>
+        <th> Longueur de la cuisse</th>
+        <th> Longueur des genoux</th>
+        <th> Longueur de la jupe</th>
+        <th> Longueur des bras</th>
+        <th> Longueur du poignet</th>
+        <th> Prix de la couture</th>
+        <th> Avance</th>
+        <th> Date de prise de commande</th>
+        <th> Facture </th>
+        <th colspan="2"> Actions</th>
+        
+    </tr>
+    {% for commande in commandes %}
+
+    <tr>
+        <td> {{ commande.Date_Retrait_Model  }}</td>
+        <td> <a href="{% url 'client' %}">{{ commande.Nom|upper }} </a></td>
+        <td> {{ commande.Telephone  }}</td>
+        <td> {{ commande.Modele_Couture  }}</td>
+        <td> {{ commande.Nombre_Pagnes  }}</td>
+        <td> {{ commande.Dos  }}</td>
+        <td> {{ commande.Epaule  }}</td>
+        <td> {{ commande.Poitrine  }}</td>
+        <td> {{ commande.Longueur_Manche  }}</td>
+        <td> {{ commande.Tour_Manche  }}</td>
+        <td> {{ commande.Longueur_Taille  }}</td>
+        <td> {{ commande.Tour_Taille  }}</td>
+        <td> {{ commande.Pince_longueur_seins  }}</td>
+        <td> {{ commande.Longueur_Camisole  }}</td>
+        <td> {{ commande.Longueur_Robe  }}</td>
+        <td> {{ commande.Longueur_Chemise  }}</td>
+        <td> {{ commande.Messure_Bassin  }}</td>
+        <td> {{ commande.Mesure_Ceinture  }}</td>
+        <td> {{ commande.Mesure_Cuisse  }}</td>
+        <td> {{ commande.Mesure_Genoux  }}</td>
+        <td> {{ commande.Longeur_Jupe  }}</td>
+        <td> {{ commande.Longueur_Bras  }}</td>
+        <td> {{ commande.Longueur_Poignet  }}</td>
+        <td> {{ commande.Prix_Couture  }}</td>
+        <td> {{ commande.Avance  }}</td>
+        <td> {{ commande.Date_Depot_Model  }}</td>
+        <td> <a href="{% url 'facture' commande.id %}"> Facture</a></td>
+
+        <td> <a href="{% url 'modifier_commande' commande.id %}"> Modifier</a></td>
+        <td> <a href="{% url 'supprimer_commande' commande.id %}"> Supprimer</a></td>
+       
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+<style>
+    /* Style pour le tableau */
+    table {
+      border-collapse: collapse; /* Fusionne les bordures adjacentes en une seule */
+      width: 100%; /* Largeur du tableau */
+    }
+    
+    /* Style pour les cellules du tableau */
+    th, td {
+      border: 1px solid black; /* Bordure de 1 pixel solide noire */
+      padding: 8px; /* Espace intérieur des cellules */
+      text-align: left; /* Alignement du texte */
+    }
+    
+    /* Style pour l'en-tête du tableau */
+    th {
+      background-color: #c4e410; /* Couleur de fond pour l'en-tête */
+    }
+    caption{ color: blue;}
+  </style>
+{% endblock %}
+

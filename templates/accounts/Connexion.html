@@ -1,0 +1,49 @@
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+<h1>Connexion</h1>
+
+<!-- <h2>{{ message }}</h2> -->
+
+<center class="Connexion">
+    {% for message in messages %}
+        {{  message }}
+    {% endfor %}
+
+    <form action="  " method="post" class="form">
+        {% csrf_token %} 
+
+        <!--
+            - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+            - form  a deux  attribut s:
+                - action : execute un mout de code 
+                - method : 
+                        - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+        -->
+       
+
+        <label for="username"  > Nom de votre entreprise <input type="text" name="username" id="username" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+
+
+        <label for="password" > Mot de passe <input type="password" name="password" id="password" required placeholder="votre mot de passe"> </label> <br> <br><br>
+
+
+        <input type="submit" value="Se connecter" id="sub"> 
+        <p><a href="{% url 'home' %}"> Se connecter</a></p>
+        <p><a class="mx-4 " href="{% url 'password_reset' %}"> Mot de passe oublie ?</a></p>
+
+
+    </form>
+
+</center>
+
+{% endblock %}
+

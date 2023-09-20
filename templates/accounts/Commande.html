@@ -1,0 +1,535 @@
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+
+<style>
+ 
+
+  .error-message{
+    color: red;
+  }
+
+</style>
+
+<!--<style>
+/* Styles CSS pour la barre de progression */
+  .progress-bar {
+      width: 100%;
+      background-color: #ccc;
+      height: 10px;
+      margin-bottom: 20px;
+  }
+
+  .progress-indicator {
+      width: 0%;
+      height: 100%;
+      background-color: #007BFF;
+      transition: width 0.3s ease;
+  }
+
+  /* Styles CSS pour le formulaire et les messages d'erreur */
+  .form-group {
+      display: none;
+  }
+
+  label {
+      font-weight: bold;
+  }
+
+  input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+  }
+
+  .erreur {
+      color: red;
+  }
+
+</style>-->
+
+<center class="formcenter">
+
+<div class="container">
+    <h1>Enregistrer votre commande </h1>
+<div class="progress-bar-container">
+    <div class="progress-bar"></div>
+</div>
+<form action="" method="post" class="form" id="formulaire">
+  {% csrf_token %}
+
+
+ 
+  <!----
+      - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+      - form  a deux  attribut s:
+          - action : execute un mout de code 
+          - method : 
+       
+          - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+
+ <strong class="error">{{ Nom_erreur }} Salut</strong><br>
+
+      -->
+
+  <!-- Barre de progression -->
+  <style>
+    .error{
+        color: red;
+        /* styles.css */
+    }
+</style>
+
+    <!--<div class="form-group ">
+      <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
+        <strong class="error">{{ nomError }} </strong>
+
+      <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    
+      <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
+  
+      <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="text" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Dos"  > Mesure du dos<input type="text" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    </div>
+
+
+    
+    <div class="form-group hidden">
+      
+      <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Col"  >  Col<input type="number" name="Col" id="Col" required placeholder="Mesure de la col"> </label> <br> <br><br>
+
+      <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    </div>
+
+
+
+
+    <div class="form-group hidden">
+     
+      <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Frappe"  > Frappe<input type="number" name="Frappe" id="Frappe" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+    </div>
+
+
+
+  
+    <div class="form-group hidden">
+      
+      <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+   
+      <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Longueur_Pantalon"  > Longueur Pantalon <input type="number" name="Longueur_Pantalon" id="Longueur_Pantalon" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Bas"  >Bas <input type="number" name="Bas" id="Bas" required placeholder="Bas"> </label> <br> <br><br>
+
+      <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+
+      <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
+    </div>
+ 
+
+
+    <!- Boutons de navigation ->
+    <button id="precedent" class="hidden">Précédent</button>
+    <button id="suivant">Suivant</button>
+    <button id="submit" class="hidden">Soumettre</button>
+  </div>
+
+</form>
+</div>-->
+
+
+
+
+
+      <label for="Nom" > Nom </label>   
+      <input type="text"  name="Nom" id="nom" > 
+      <br> 
+        <strong class="error">{{ nomError }} </strong><br>
+
+      <label for="Telephone"  > Telephone  </label>
+      <input type="number" name="Telephone" id="Telephone" >
+      <br>
+      <strong class="error">{{ telError }} </strong><br>
+
+      <label for="Modele_Couture" > Modele de la couture </label>
+      <input type="text"  name="Modele_Couture" id="nom" > 
+      <br> 
+      <strong class="error">{{ modele }} </strong><br>
+
+      <label for="Nombre_Pagnes"  > Nombre de pagnes </label> 
+      <input type="text" name="Nombre_Pagnes" id="nom" > 
+      <br> 
+      <strong class="error">{{ pagne }} </strong><br>
+
+      <label for="Dos"  > Mesure du dos</label> 
+      <input type="text" name="Dos" id="nom" > 
+      <br> 
+      <strong class="error">{{ dos }} </strong><br>
+
+      <label for="Epaule"  > Mesure de l'epaule   </label>
+      <input type="number" name="Epaule" id="nom" >
+      <br> 
+      <strong class="error">{{ epaule }} </strong><br>
+
+      <label for="Poitrine"  > Mesure de la poitrine  </label> 
+      <input type="number" name="Poitrine" id="nom" > 
+      <br> 
+      <strong class="error">{{ poitrine }} </strong><br>
+
+
+    
+      
+      <label for="Longueur_Manche"  > Longueur de la manche   </label>
+      <input type="number" name="Longueur_Manche" id="nom">
+      <br> 
+      <strong class="error">{{ lgm }} </strong><br>
+
+
+      <label for="Tour_Manche"  > Tour de la manche  </label> 
+      <input type="number" name="Tour_Manche" id="nom" >
+        <br> 
+      <strong class="error">{{ trm }} </strong><br>
+
+
+      <label for="Longueur_Taille"  > Longueur de la taille </label>
+      <input type="number" name="Longueur_Taille" id="nom" >
+    <br> 
+      <strong class="error">{{ lgt }} </strong><br>
+
+
+
+      <label for="Col"  >  Col </label>
+      <input type="number" name="Col" id="Col">
+    <br> 
+      <strong class="error">{{ col }} </strong><br>
+      
+      <label for="Tour_Taille"  > Tour de la taille  </label>
+      <input type="number" name="Tour_Taille" id="nom" >
+      <br> 
+      <strong class="error">{{ trt }} </strong><br>
+
+      <label for="Pince_longueur_seins"  >Pinces  </label> 
+      <input type="number" name="Pince_longueur_seins" id="nom" >
+<br> 
+      <strong class="error">{{ pls }} </strong><br>
+
+
+      <label for="Longueur_Camisole"  > Longueur de la camisole </label> 
+      <input type="number" name="Longueur_Camisole" id="nom" > 
+<br> 
+      <strong class="error">{{ lgc }} </strong><br>
+
+
+
+
+     
+      <label for="Longueur_Robe"  > Longueur de la robe </label>
+      <input type="number" name="Longueur_Robe" id="nom" > 
+      <br> 
+      <strong class="error">{{ lgr }} </strong><br>
+
+      <label for="Frappe"  > Frappe </label> 
+      <input type="number" name="Frappe" id="Frappe" >
+<br> 
+      <strong class="error">{{ frappe }} </strong><br>
+
+
+      <label for="Longueur_Chemise"  > Longueur de la chemise </label> 
+      <input type="number" name="Longueur_Chemise" id="nom" > 
+<br> 
+      <strong class="error">{{ lgch }} </strong><br>
+
+      <label for="Messure_Bassin"  > Longueur du bassin</label> 
+      <input type="number" name="Messure_Bassin" id="nom" > 
+      <br> 
+      <strong class="error">{{ mb }} </strong><br>
+
+
+      <label for="Mesure_Ceinture"  > Longueur de la ceinture  </label> 
+      <input type="number" name="Mesure_Ceinture" id="nom" >
+<br> 
+      <strong class="error">{{ mc }} </strong><br>
+
+
+      <label for="Mesure_Cuisse"  > Longueur de la cuisse  </label> 
+      <input type="number" name="Mesure_Cuisse" id="nom" >
+<br> 
+      <strong class="error">{{ mcu }} </strong><br>
+
+
+      <label for="Mesure_Genoux"  > Longueur des genoux </label>
+      <input type="number" name="Mesure_Genoux" id="nom" > 
+<br> 
+      <strong class="error">{{ mg }} </strong><br>
+
+
+
+  
+      
+      <label for="Longeur_Jupe"  > Longueur de la jupe </label> 
+      <input type="number" name="Longeur_Jupe" id="nom" > 
+      <br> 
+      <strong class="error">{{ lgj }} </strong><br>
+      
+      
+      <label for="Longueur_Poignet"  > Longueur du poignet  </label> 
+      <input type="number" name="Longueur_Poignet" id="nom" >
+      <br> 
+      <strong class="error">{{ lgpo }} </strong><br>
+
+      <label for="Longueur_Pantalon"  > Longueur Pantalon </label> 
+      <input type="number" name="Longueur_Pantalon" id="Longueur_Pantalon"> 
+<br> 
+      <strong class="error">{{ lgpa }} </strong><br>
+
+
+      <label for="Bas"  >Bas </label> 
+      <input type="number" name="Bas" id="Bas" > 
+<br> 
+      <strong class="error">{{ bas }} </strong><br>
+
+
+      <label for="Prix_Couture"  > Prix de la couture  </label> 
+      <input type="number" name="Prix_Couture" id="nom" >
+<br> 
+      <strong class="error">{{ pc }} </strong><br>
+
+      <label for="Avance"  >Avance </label>
+      <input type="number" name="Avance" id="nom" >
+<br> 
+      <strong class="error">{{ avance }} </strong><br>
+
+      <label for="Date_Retrait_Model"  > Date de retrait </label>
+      <input type="date" name="Date_Retrait_Model" id="nom" pattern="\d{4}-\d{2}-\d{2}" > 
+<br> 
+<strong class="error">{{ dateError }} </strong><br>
+
+
+
+      <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
+
+
+    <button id="submit" class="hidden">Soumettre</button>
+  
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const formulaire = document.getElementById('formulaire');
+      const groupes = formulaire.querySelectorAll('.form-group');
+      const progressBar = document.querySelector('.progress-bar');
+      let etapeActuelle = 0;
+  
+      // Fonction pour afficher l'étape actuelle
+      function afficherEtape(etape) {
+          groupes.forEach((groupe, index) => {
+              groupe.style.display = index === etape ? 'block' : 'none';
+          });
+          etapeActuelle = etape;
+  
+          // Control de champs
+  
+          function gestionErreur(){
+            const Nom = document.getElementById('Nom');
+            const errorStrong = Nom.parentElement.querySelector('.error-message');
+  
+            Nom.addEventListener('blur', function () {
+            const valeur = Nom.value;
+  
+            // Vérifier si le champ est vide
+            if (valeur === '') {
+                errorStrong.textContent = 'Ce champ ne peut pas être vide.';
+                Nom.classList.add('error');
+            } 
+            else {
+                // Vérifier si la valeur est un nombre négatif
+                const nombre = parseFloat(valeur);
+                if (isNaN(nombre) || nombre < 0) {
+                    errorStrong.textContent = 'Veuillez entrer un nombre positif.';
+                    Nom.classList.add('error');
+                } 
+                else {
+                    // Vérifier si la valeur dépasse 8 caractères
+                    if (valeur.length > 8) {
+                        errorStrong.textContent = 'La valeur ne doit pas dépasser 8 caractères.';
+                        Nom.classList.add('error');
+                    } else {
+                        // Réinitialiser le message d'erreur et la classe en cas de succès
+                        errorStrong.textContent = '';
+                        Nom.classList.remove('error');
+                    }
+                }
+            }
+        });
+  
+  
+          }
+        
+          // Mettre à jour la barre de progression
+          const pourcentageProgression = ((etapeActuelle + 1) / groupes.length) * 100;
+          progressBar.style.width = pourcentageProgression + '%';
+  
+          // Afficher ou masquer les boutons de navigation
+          const precedent = document.getElementById('precedent');
+          const suivant = document.getElementById('suivant');
+          const submit = document.getElementById('submit');
+  
+          precedent.style.display = etapeActuelle === 0 ? 'none' : 'inline-block';
+          suivant.style.display = etapeActuelle < groupes.length - 1 ? 'inline-block' : 'none';
+          submit.style.display = etapeActuelle === groupes.length - 1 ? 'inline-block' : 'none';
+      }
+  
+      // Bouton Suivant
+      document.getElementById('suivant').addEventListener('click', function () {
+          if (etapeActuelle < groupes.length - 1) {
+              afficherEtape(etapeActuelle + 1);
+          }
+      });
+  
+      // Bouton Précédent
+      document.getElementById('precedent').addEventListener('click', function () {
+          if (etapeActuelle > 0) {
+              afficherEtape(etapeActuelle - 1);
+          }
+      });
+  
+      // Bouton Soumettre
+      document.getElementById('submit').addEventListener('click', function () {
+          // Soumettre le formulaire ici si nécessaire
+      });
+  
+      // Afficher la première étape au chargement de la page
+      afficherEtape(0);
+  });
+  
+  </script>
+  
+   body {
+      font-family: Arial, sans-serif;
+  }
+
+  .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+      display: none;
+      margin-bottom: 20px;
+  }
+
+  .hidden {
+      display: none;
+  }
+
+  h1 {
+      text-align: center;
+  }
+
+  .progress-bar-container {
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      margin-bottom: 20px;
+  }
+
+  .progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #4caf50;
+      border-radius: 10px;
+      transition: width 0.3s ease-in-out;
+  }
+
+  .navigation {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }

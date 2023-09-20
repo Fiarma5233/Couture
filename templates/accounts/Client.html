@@ -1,0 +1,105 @@
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+<!-- <h2>{{ message }}</h2> -->
+
+<center class="formcenter">
+    <!--{% for message in messages %}
+        {{  message }}
+    {% endfor %}-->
+    <h2>{{ msg }}</h2>
+    <p><a href="{% url 'generationPdf' %}"> PDF</a></p>
+
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+
+        <h1>Client</h1>
+        <!--
+            - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
+            - form  a deux  attribut s:
+                - action : execute un mout de code 
+                - method : 
+                        - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
+        -->
+    <center>
+
+        <table>
+            <caption>Liste des Clients </caption>
+            <tr>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Interventions</th>
+                <th>Date</th>
+
+
+
+            </tr>
+            {% for client in clients_page %}
+
+            <tr>
+                <td><a href="{% url 'profil' profil_id=client.Telephone %}">{{ client.Nom|upper }}</a></td>
+                <td>{{ client.Telephone }}</td>
+                <td>{{ client.Interventions }}</td>
+                <td>{{ client.Date_Created }}</td>
+
+
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+        <div class="pagination">
+            {% if clients_page.has_previous %}
+                <p><a href="?page=1">Première page</a></p>
+                <span><a href="?page={{ clients_page.previous_page_number }}">Précédente</a></span>
+            {% endif %}
+          
+            <span>Page {{ clients_page.number }} sur {{ clients_page.paginator.num_pages }}.</span>
+          
+            {% if clients_page.has_next %}
+                <a href="?page={{ clients_page.next_page_number }}">Suivante</a>
+                <a href="?page={{ clients_page.paginator.num_pages }}">Dernière page</a>
+            {% endif %}
+          </div>
+
+    </center>
+      
+
+       
+        <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
+        <p><a href="{% url 'liste_commande' %}"> Liste des commandes</a></p>
+    </form>
+
+</center>
+
+
+<style>
+    /* Style pour le tableau */
+    table {
+      border-collapse: collapse; /* Fusionne les bordures adjacentes en une seule */
+      width: 100%; /* Largeur du tableau */
+    }
+    
+    /* Style pour les cellules du tableau */
+    th, td {
+      border: 1px solid black; /* Bordure de 1 pixel solide noire */
+      padding: 8px; /* Espace intérieur des cellules */
+      text-align: left; /* Alignement du texte */
+    }
+    
+    /* Style pour l'en-tête du tableau */
+    th {
+      background-color: #c4e410; /* Couleur de fond pour l'en-tête */
+    }
+    caption{ color: blue;}
+  </style>
+{% endblock %}
+
