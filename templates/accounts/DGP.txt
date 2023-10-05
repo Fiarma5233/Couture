@@ -1,0 +1,7 @@
+
+Un group est un ensemble de permissions
+
+un utilisateur peut appartenir a un ou plusieurs groupes .Tout comme un groupe peut avoir un ou plusieurs utilisateurs : 
+        relation : ManyToMany
+
+Groupe et Permissions : Relation:ManyToMany

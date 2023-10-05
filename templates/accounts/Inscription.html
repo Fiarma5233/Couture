@@ -2,25 +2,26 @@
     {% extends 'global.html' %}
 
     {% block general %}
+
+    
     {% load static %}
     
     <link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
 
 
-    {% for message in messages %}
-        {{  message }}
-    {% endfor %}
-    
     
 
   
 
-    <h1>Inscription</h1>
+  
    
-      <div class="forme">
-        <form action="" method="post" >
+      <div class="container">
+        <div class="title">Inscription</div>
+        <form action="" method="post"  >
 
             {% csrf_token %} 
+
+
             <!--
                 - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
                 - form  a deux  attribut s:
@@ -29,40 +30,51 @@
                             - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
             -->
 
-            <label for="lastname" > Nom </label><br>
-            <input type="text"  name="lastname" id="lastname" placeholder="votre nom de famille"> 
-            <br> <br>
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Nom</span>
+                    <input type="text"  name="lastname" id="lastname" > 
+                    <strong class="error">{{ erreur1 }}</strong>    
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Prenom</span>
+                    <input type="text" name="firstname" id="firstname" required >
+                    <strong class="error">{{ erreur2 }}</strong>    
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Nom de votre entreprise</span>
+                    <input type="text" name="username" id="username" required >
+                    <strong class="error">{{ erreur3 }}</strong>    
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Adresse mail</span>
+                    <input type="email" name="email" id="email" required >
+                    <strong class="error">{{ erreur4 }}</strong>    
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Mot de passe</span>
+                    <input type="password" name="password" id="password" required >
+                    <strong class="error">{{ erreur5 }}</strong>    
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Confirmation du Mot de passe</span>
+                    <input type="password" name="password1" id="password1" required > 
+                    <strong class="error">{{ erreur6 }}</strong>    
+                </div>
+
+           </div>
            
-               
-            <label for="firstname"> Prenom  </label><br> 
-            <input type="text" name="firstname" id="firstname" required placeholder="votre prenom">
-            <br> <br><br>
+           <div class="button">
+                <input type="submit"  value="Valider" id="sub">
 
-            <label for="username"  > Nom de votre entreprise  </label> 
-            <br>
-            <input type="text" name="username" id="username" required placeholder="Le nom de votre entreprise">
-            <br> <br><br>
+           </div>
 
-            <label for="email" > Adresse mail </label>
-            <br>
-            <input type="email" name="email" id="email" required placeholder="votre adresse mail">
-            <br> <br><br>
-
-
-            <label for="password" > Mot de passe  </label>
-            <br>
-            <input type="password" name="password" id="password" required placeholder="votre mot de passe">
-            <br> <br><br>
-            
-
-            <label for="password1"  > Confirmation du Mot de passe </label>
-            <br>
-            <input type="password" name="password1" id="password1" required placeholder="Saissiser le meme mot de passe"> 
-            <br> <br><br>
-                        
-            <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'connexion' %}"> Se connecter</a></p>
-            <p><a href="{% url 'client' %}">Client</a></p>
-            <p><a href="{% url 'commande' %}"> commande</a></p>
+          
         </form>
     </div>
 

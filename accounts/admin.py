@@ -53,3 +53,10 @@ class AdminCommande(admin.ModelAdmin):
 @admin.register(Facture)
 class AdminFacture(admin.ModelAdmin):
     list_display = ("id", "Date", "Nom", "Telephone", "Modele_couture", "Prix_Couture", "Avance", "Solde")
+
+
+admin.site.site_title = "Fiarma Couture"
+
+admin.site.site_header = "Fiarma Couture"
+
+admin.site.index_title = "Fiarma Couture"

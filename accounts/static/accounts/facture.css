@@ -1,0 +1,51 @@
+
+.facture {
+      background-color:rgba(62, 143, 98, 0.199);
+      padding: 20px;
+      /*padding-top: 30%;*/
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+      flex-grow: 1;
+      color:rgba(62, 143, 98, 0.199);
+      margin: auto;
+      margin-top: 100px;
+
+}
+
+
+.facture h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.facture p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.facture .titre {
+  font-weight: bold;
+}
+p{
+  margin-top: 50px;
+}
+/* Ajoutez d'autres styles personnalisés au besoin */
+
+
+button{
+  /*border-radius: 20px;
+  font-weight: 400;
+  size: 5%;
+  margin-bottom: 10px;
+  border-width: 10px;
+  margin-left: auto;
+  justify-content: flex-end;*/
+  margin-left: 1200px;
+  margin-top: 15px;
+  width: 75px;
+  height: 30px;
+  border-radius: 3pc;
+
+}

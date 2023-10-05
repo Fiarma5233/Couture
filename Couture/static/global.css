@@ -1,0 +1,176 @@
+
+
+
+
+
+
+
+.error{
+    color: red;
+}
+
+
+
+/*
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+} */
+
+/*header{
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}*/
+
+.navbar{
+    background-color: #07240c;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    color: yellow;
+    margin-bottom: 80px;
+
+    /*margin: 30px;
+    padding: 60px;
+    list-style: none;
+    text-decoration: none;*/
+
+    overscroll-behavior-x: revert;
+
+
+}
+
+
+
+.navbar a, p{
+    color: white;
+}
+
+.navbar a:hover{
+    color: orange;
+   
+    cursor: pointer;
+}
+
+.navbar .logo{
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+
+.navbar .nav-links ul{
+    display: flex;
+}
+
+.navbar .nav-links ul li{
+    margin: 0 25px;
+
+
+}
+
+/*.navbar .nav-links ul li.active a {
+    color: yellow;
+    font-weight: 600;
+
+    
+}*/
+
+.navbar i{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    width: 35px;
+}
+
+
+.mobile-menu{
+    padding: 0;
+}
+
+@media screen and (max-width: 900px){
+    .navbar .logo{
+       position: absolute;
+
+       top: 40px;
+       left: 30px;
+
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+    }
+    .navbar{
+        padding: 0;
+    }
+
+    .navbar i{
+        display: block;
+    }
+
+    .nav-links{
+        left: 0;
+        top: 0;
+        position: absolute;
+        /*background-color: rgba(20, 119, 64, 0.856);;
+        backdrop-filter: blur(7px);*/
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        /*justify-content: center;*/
+        justify-content: right;
+
+        align-items: center;
+        margin-left: -100%;
+        transition: all 0.5s ease;
+
+        bottom: 6px;
+
+    }
+
+    .mobile-menu{
+        margin-left: 0;
+
+
+    }
+
+    *{
+        max-width: 100%;
+        max-width: 100%;
+    }
+    
+
+    .nav-links ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .navbar .nav-links ul li{
+        margin: 5px 0;
+        font-size: 1.2rem;
+    
+    
+    }
+
+    .navbar .nav-links ul{
+        background-color: rgba(62, 143, 98, 0.199);;
+    
+    }
+}
+
+
+/*body{
+    margin-top: -50px;
+}
+*/

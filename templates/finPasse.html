@@ -1,0 +1,14 @@
+
+
+
+
+
+{% autoescape off %}
+
+Salut {{ name }}
+ Vous venez de renitialiser votre mot de passe.  Cliquez sur le lien ci-dessous pour vous connecter desormais avec celui-ci!!!
+Lien : https//{{domain}}{% url 'fin' uidb64=uid token=token %}
+
+{% endautoescape %}
+
+

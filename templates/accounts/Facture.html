@@ -2,64 +2,107 @@
 
 
 {% extends 'global.html' %}
-
-{% block general %}
 {% load static %}
 
 
-
-<h1>commandes Specifiees</h1>
-
-<a href="{% url 'facturePdf' facture.id %}">Creation de PDF</a>
-
-<table >
-    <caption>Facture n°{{ facture.id }}</caption>
-    <tr>
-        <th> Date</th>
-        <th> Client</th>
-        <th> Telephone</th>
-        <th> Modele</th>
-        <th> Prix de la couture</th>
-        <th> Avance</th>
-        <th> Reste a solder</th>
-        
-    </tr>
+{% block general %}
 
 
-    <tr>
-        <td> {{ facture.Date}} </a></td>
-        <td> {{ facture.Nom  }}</td>
-        <td> {{ facture.Telephone  }}</td>
+
+<br>
+<link rel="stylesheet" href="{% static 'accounts/factur.css' %}">
+<div class="primary" style="text-align: center; margin-top: 150px;">
+</div>
+  
+      <style>
+
       
+        .facture{
+          padding: auto;
+          max-width: 600px;
+          margin: auto;
+          background-color: darkgreen;
+        }
+       .facture p label{
+        margin-left: 20px;
+        
+       }
+       .facture p label strong{
+        float: right;
+        margin-right: 20px;
+       }
 
-        <td> {{ facture.Modele_couture  }}</td>
-        <td> {{ facture.Prix_Couture  }}</td>
-        <td> {{ facture.Avance  }}</td>
-        <td> {{ facture.Solde }}</td>
-    </tr>
-
-</table>
-<p><a href="{% url 'liste_commande' %}"> Liste des commandes</a></p>
+       .facture button{
+ 
+        margin-top: 15px;
+        width: 100px;
+        height: 30px;
+        border-radius: 3pc;
 
 
 
-<style>
-  /* Style pour le tableau */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
+    
+
+
+      }
+       
+
+      </style>
+
+
+
+  <div class="facture" style=" margin-top: 50px; " >
+
+   <center><button  onclick="window.location.href='{% url 'facturePdf' facture.id %}' " > PDF</button></center> 
+
+
+
+      <p>
+        <label >Facture :<strong>n°{{ facture.id }}
+        </strong> </label>
+      </p>
+      <br>
+      <p>
+        <label>Date<strong>{{ facture.Date }}
+          </strong>
+        </label >
+      </p>
+      <br>
+      <p>
+        <label >Client<strong>{{ facture.Nom }}
+        </strong>
+      </label>
+      </p>
+      <br>
+
+      <p>
+        <label >Telephone<strong>{{ facture.Telephone }}
+        </strong>
+      </label>
+      </p>
+      <br>
+
+      <p>
+        <label >Modele<strong>{{ facture.Modele_couture }}
+        </strong>
+      </label>
+      </p>
+      <br>
+      <p>
+        <label >Prix<strong>{{ facture.Prix_Couture }}</strong></label>
+      </p>
+      <br>
+      <p>
+        <label >Avance<strong>{{ facture.Avance }}</strong></label>
+
+      </p>
+      <br>
+
+      <p>
+        <label >Reste<strong>{{ facture.Solde }}</strong></label>
+      </p>
+  </div>
   
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #8a1515;
-  }
-</style>
 
 
 {% endblock %}

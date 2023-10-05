@@ -1,0 +1,25 @@
+
+
+Nous vous avons envoye  votre nouveau mot de passe par mail. Veuillez le consulter afin de pouvir vour connecter
+
+
+
+
+
+
+{% extends 'global.html' %}
+
+{% block general %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/verification.css' %}">
+
+    <main>
+          <section id="hero">
+              <h1>Information</h1>
+              <p>Nous vous avons envoye un mail. <br> Veuillez le  consulter !!!</p>
+          </section>
+    </main>
+
+{% endblock %}
+

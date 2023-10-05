@@ -27,13 +27,13 @@ from xhtml2pdf import pisa
 # Create your views here.
 
 
-
+'''
 def home(request):
     if request.method == 'GET':
         dir = {
            "greeting": "Vous etes la bienvenue"
         }
-        return render(request, "accounts/Home.html")
+        return render(request, "accounts/Home.html")'''
 #    return render(request, "accounts/Home.html", dir)
 
 '''
@@ -139,44 +139,21 @@ def inscription(request):
         password = request.POST.get("password")
         password1 = request.POST.get("password1")
 
-        if lastname == "":
-            #messages.error(request, "Veuillez remplir ce champ")
-            erreur1 = "Veuillez remplir ce champ"
-            return render(request, "accounts/Inscription.html", context={"erreur1": erreur1})
-
-        if firstname == "":
-            #messages.error(request, "Veuillez remplir ce champ")
-            erreur2 = "Veuillez remplir ce champ"
-            return render(request, "accounts/Inscription.html", context={"erreur2": erreur2})
-
         if User.username == "":
-            #messages.error(request, "Veuillez remplir ce champ")
-            erreur3 = "Veuillez remplir ce champ"
-            return render(request, "accounts/Inscription.html", context={"erreur3": erreur3})
+            messages.error(request, "Veuillez remplir ce champ")
+            return redirect("accounts:inscription")
 
         if User.objects.filter(username=username):
-            #messages.error(request, "Ce nom existe deja")
-            #return redirect("inscription")
-            erreur3 = "Ce compte existe deja"
-            return render(request, "accounts/Inscription.html", context={"erreur3": erreur3})
-
+            messages.error(request, "Ce nom existe deja")
+            return redirect("inscription")
         
         if User.objects.filter(email=email):
-            #messages.error(request, "Cet email a deja un compte")
-            # return redirect("inscription")
-            erreur4 = "Cet email a deja un compte"
-            return render(request, "accounts/Inscription.html", context={"erreur4": erreur4})
-
-        if password == '':
-            erreur5 = "Veuillez remplir ce champ!"
-            return render(request, "accounts/Inscription.html", context={"erreur5": erreur5})
-
+            messages.error(request, "Cet email a deja un compte")
+            return redirect("inscription")
+        
         if password != password1 :
-            #messages.error(request, "Les deux mots de passe doivent etre les memes")
-            #return redirect("inscription")
-            erreur6 = 'Les deux mots de passe doivent etre les memes'
-            return render(request, "accounts/Inscription.html", context={"erreur6": erreur6})
-
+            messages.error(request, "Les deux mots de passe doivent etre les memes")
+            return redirect("accounts:inscription")
         #couturier = Couturier.objects.create(Lastname=Lastname ,  Firstname=Firstname, Company=Company, Email=Email, Password=Password, PasswordConfirm=PasswordConfirm )                   # Appel de notre model
         couturier = User.objects.create_user( username, email, password )                   # Appel de notre model
         couturier.first_name = firstname
@@ -240,7 +217,7 @@ def activate(request, uidb64, token): # cette fonction genere le lien de confima
     
     else:
         messages.error(request, "Echec d'activation de votre compte. Reessayer plutard !!!")
-        return redirect("connexion")
+        return redirect("accounts:home")
 
 
 def connexion(request):
@@ -255,15 +232,11 @@ def connexion(request):
         user = authenticate(username=username, password=password)
         try:
             my_user = User.objects.get(username=username)
-            '''if username != username or password != password:
-                erreur = "Vos identifiants sont incorrects"
-                return render(request, 'accounts/Connexion.html', context={'erreur':erreur})'''
 
         except User.DoesNotExist:
-            #messages.error(request, "Ce compte n'existe pas")
-            erreur = "Ce compte n'existe pas"
-            return render(request, 'accounts/Connexion.html', context={'erreur':erreur})
-        
+            messages.error(request, "Ce compte n'existe pas")
+            return redirect("connexion")
+
         # Verifions si l'utilisateur existe 
         if user is not None:
             login(request, user)
@@ -274,23 +247,17 @@ def connexion(request):
             
         
         elif my_user.is_active == False:  # Si l'utilisateur tente de se connecter sans avoir confirmer  son addresse
-            #messages.error(request, "Vous n'avez pas encore confirme votre addresse email. Faites-le avant de vous connecter !!!")
-            erreur = "Confirmez d'abord votre adresse email !"
-            return render(request, 'accounts/Connexion.html', context={'erreur':erreur})
-
-
+            messages.error(request, "Vous n'avez pas encore confirme votre addresse email. Faites-le avant de vous connecter !!!")
         else:
-            #messages.error(request, "Mauvaise authentification")
-            erreur = "Mauvaise authentification"
-            return render(request, 'accounts/Connexion.html', context={'erreur':erreur})
-            #return redirect('connexion')
+            messages.error(request, "Mauvaise authentification")
+            return redirect('connexion')
         
        
 
     return render(request, 'accounts/Connexion.html')
 
 
-@login_required
+
 def deconnexion(request):
     logout(request)
     messages.success(request, "Vous avez ete deconnecte")
@@ -308,37 +275,34 @@ def renitialiser(request):
     
     #users = User.objects.all()
     #users = User.objects.filter(email=User.email)
-    #User.is_activate = True
+    User.is_activate = True
 
     #User.objects.get(email=email).is_active = True
     if request.method == "POST":
         email = request.POST.get('email') #On requpere la valeur de l'adrresse email
         
-        couturier = User.objects.filter(email=email).first()
-        if couturier : # On verivie si cet email correspond pas vraiement a celui de l'user
+        couturier = User.objects.get(email=email) 
+        if couturier: # On verivie si cet email correspond pas vraiement a celui de l'user
             #erreur = "Cette addresse email n'existe pas" #On resourne une esseur
             #return render(request, "accounts/renitialiser.html", context={"erreur": erreur} )
         
-            #   Email de Bienvenue
-            '''subject = " Renitialisation de mot de passe de "  + couturier.username + '!!!'     # Sujet de notre mail
+        #else:''' # sinon
+        #   Email de Bienvenue
+            subject = " Renitialisation de mot de passe de "  + couturier.username + '!!!'     # Sujet de notre mail
             message = "Ne vous inquietez pas " + couturier.first_name + " " + couturier.last_name + " Vous allez bientot renitialiser votre mot de passe " +  " \n\n\n Fiarma SOME"  #Message a envoyer
             form_email = settings.EMAIL_HOST_USER  # Adrresse mail qui va envoyer le mail
             to_list = [couturier.email]  # Destinataire du mail
-            send_mail(subject, message, form_email, to_list, fail_silently=False) # Envoi du mail'''
+            send_mail(subject, message, form_email, to_list, fail_silently=False) # Envoi du mail
 
             # Email de renitialisation
             current_site = get_current_site(request)  # Pour avoir le lien du site
             email_subject = " Renitialisation de mot de passe de "  + couturier.username  # Sujet du mail
-            """
             messageConfirm = render_to_string("confirmerRenitialisation.html", {
                 "name" : couturier.first_name,  # Prenom de l'utilisateur
                 "domain": current_site.domain,  # Nom du domaine (site)
                 "uid" :urlsafe_base64_encode(force_bytes(couturier.pk)), # Donner un id chaque lien endode sur64 bits
                 "token": generatorToken.make_token(couturier)
             }) # Confirmation du message dans un fichier
-            """
-            
-            messageConfirm = f"Salut {couturier.first_name} {couturier.last_name} !!! \n\n\n Vous avez oublie votre mot de passe et vous souhaitez le renitialliser. \n Pour cela, veuillez cliquer sur le lien ci-dessous !!! \n\n Lien : {request.scheme}://{request.get_host()}/nouveauPasse/{urlsafe_base64_encode(force_bytes(couturier.pk))}/{generatorToken.make_token(couturier)} \n\n Fiarma Landry SOME"
 
             # Pour envoi
             email = EmailMessage(
@@ -350,18 +314,17 @@ def renitialiser(request):
 
             email.fail_silently = False  #  Ceci permet d'indiquer les eventuelles erreurs liees a l'envoi du mail
             email.send() # Envoi
-            return render(request, "accounts/verification.html")
+
+            return redirect('nouveauPasse')
 
         else:
             erreur = "Cette adresse email n'existe pas"
-            return render(request, "accounts/renitialiser.html", context={"erreur":erreur} )
-
+            return render(request, "accounts/renitialiser.html", context={"erreur": erreur} )
     return render(request, "accounts/renitialiser.html" )
 
 
 
-"""
-def Confirmeration(request, uidb64, token): # cette fonction genere le lien de confimation unique a chaque utilisateur
+''''def Confirmeration(request, uidb64, token): # cette fonction genere le lien de confimation unique a chaque utilisateur
     print(uidb64, token)
     try:
         # Verifions si le lien correspond a l'utilisateur en question
@@ -375,16 +338,17 @@ def Confirmeration(request, uidb64, token): # cette fonction genere le lien de c
         user.is_active = True  # C'est lorsqu'on clique sur le lien de confirmation que l'utilisateur est actif
         user.save() # On l'enrregistre
         messages.success(request, "Congratulations !!! Votre compte a ete activated")
-        #return render(request, "accounts/verification.html")
-        return render(request, 'accounts/nouveauPasse.html')
+        return redirect("nouveauPasse")
+        #return render(request, 'accounts/nouveauPasse.html')
     
     else:
         messages.error(request, "Echec d'activation de votre compte. Reessayer plutard !!!")
-        return render(request, "accounts/verification.html")
+        return redirect("renitialiser")'''
 
-"""
 
-def nouveauPasse(request, uidb64, token):
+
+
+def nouveauPasse(request):
     #users = User.objects.all()
     #users = User.objects.filter(email=User.email)
     #User.is_activate = True
@@ -397,9 +361,9 @@ def nouveauPasse(request, uidb64, token):
         #return render(request, "accounts/renitialiser.html")
         #User.is_activate = True
 
-    #User.is_activate = True
-   # utilisateur = User.objects.all()
-    #email = User.email
+    User.is_activate = True
+    utilisateur = User.objects.all()
+    email = User.email
     #couturier = User.objects.all()
     #users = User.objects.filter(email=email)
 
@@ -412,11 +376,6 @@ def nouveauPasse(request, uidb64, token):
 
         password = request.POST.get("password")
         password1 = request.POST.get('password1')
-
-        uid_pk = force_text(urlsafe_base64_decode(uidb64))
-
-        #Couturier = User.objects.filter(pk=uid_pk).first()
-        Couturier = User.objects.get(pk=uid_pk)
 
         print(f"Les nouveaux passes sont:\t\t {password} \t et \t {password1}")
         if password == '':
@@ -436,56 +395,44 @@ def nouveauPasse(request, uidb64, token):
         #password = int(password)
         #password1 = int(password1)
 
-        #User.password = password
+        User.password = password
         #User.password.save()
        # users= User.password
         #users.save()
 
-        is_valid = generatorToken.check_token(Couturier, token)
-        if is_valid:
-            Couturier.set_password(password)
-            Couturier.is_active=True
-            Couturier.save()
+        #Couturier = User.objects.get(email=email) 
+        subject = " Vous venez de renitialiser votre mot de passe "    # Sujet de notre mail
+        #message =  f"{User.first_name } {User.last_name} Votre nouveau mot de passe est : \t\t  + {User.password } \n\n\n Fiarma SOME"  #Message a envoyer
+        #message =  User.first_name + User.last_name +  " Votre nouveau mot de passe est : \t\t " + User.password + " \n\n\n Fiarma SOME"  #Message a envoyer
+        message =    " Votre nouveau mot de passe est : \t\t " + User.password + " \n\n\n Fiarma SOME"  #Message a envoyer
 
-            #Couturier = User.objects.get(email=email) 
-            '''subject = " Vous venez de renitialiser votre mot de passe "    # Sujet de notre mail
-            #message =  f"{User.first_name } {User.last_name} Votre nouveau mot de passe est : \t\t  + {User.password } \n\n\n Fiarma SOME"  #Message a envoyer
-            #message =  User.first_name + User.last_name +  " Votre nouveau mot de passe est : \t\t " + User.password + " \n\n\n Fiarma SOME"  #Message a envoyer
-            message =    " Votre nouveau mot de passe est : \t\t " + Couturier.password + " \n\n\n Fiarma SOME"  #Message a envoyer
+        form_email = settings.EMAIL_HOST_USER  # Adrresse mail qui va envoyer le mail
+        to_list = [User.email]  # Destinataire du mail
+        send_mail(subject, message, form_email, to_list, fail_silently=False) # Envoi du mail
+        print(f"Mon adresse mail est :\t\t {User.email}")
 
-            form_email = settings.EMAIL_HOST_USER  # Adrresse mail qui va envoyer le mail
-            to_list = [Couturier.email]  # Destinataire du mail
-            send_mail(subject, message, form_email, to_list, fail_silently=False) # Envoi du mail
-            print(f"Mon adresse mail est :\t\t {User.email}")'''
+        # Email de renitialisation
+        current_site = get_current_site(request)  # Pour avoir le lien du site
+        email_subject =" vous venez de renitiaaliser votre mot de  passe"   #User.username + "  Connectez desormais avec votre nouveau  mot de passe de "  # Sujet du mail
+        messageConfirm = render_to_string("finPasse.html", {
+            "name" : User.first_name,  # Prenom de l'utilisateur
+            "domain": current_site.domain,  # Nom du domaine (site)
+            "uid" :urlsafe_base64_encode(force_bytes(User.pk)), # Donner un id chaque lien endode sur64 bits
+            "token": generatorToken.make_token(User)
+        }) # Confirmation du message dans un fichier
 
-            # Email de renitialisation
-            current_site = get_current_site(request)  # Pour avoir le lien du site
-            email_subject = "Nouveau mot de passe"
-            #email_subject = f" Vous venez de renitiaaliser votre mot de  passe  qui est desormais {Couturier.password} "   #User.username + "  Connectez desormais avec votre nouveau  mot de passe de "  # Sujet du mail
+        # Pour envoi
+        email = EmailMessage(
+            email_subject,
+            messageConfirm,
+            settings.EMAIL_HOST_USER,
+            [User.email]
+        )
 
-            #messageConfirm = f"Vous venez de renitialiser votre mot de  passe  qui est desormais {Couturier.password} \n \n Veuillez cliquer sur le lien ci-dessous pour se connecter !!! \n\n Lien : {request.scheme}://{request.get_host()}/connexion/{urlsafe_base64_encode(force_bytes(Couturier.pk))}/{generatorToken.make_token(Couturier)} \n\n Fiarma Landry SOME"
-            messageConfirm = f"Vous venez de renitialiser votre mot de  passe  qui est desormais {Couturier.password} \n \n Veuillez cliquer sur le lien ci-dessous pour se connecter !!! \n\n Lien : {request.scheme}://{request.get_host()}/ \n\n Fiarma Landry SOME"
+        email.fail_silently = False  #  Ceci permet d'indiquer les eventuelles erreurs liees a l'envoi du mail
+        email.send() # Envoi
 
-            '''messageConfirm = render_to_string("finPasse.html", {
-                "name" : Couturier.first_name,  # Prenom de l'utilisateur
-                "domain": current_site.domain,  # Nom du domaine (site)
-                "uid" :urlsafe_base64_encode(force_bytes(Couturier.pk)), # Donner un id chaque lien endode sur64 bits
-                "token": generatorToken.make_token(Couturier)
-            }) # Confirmation du message dans un fichier'''
-
-            # Pour envoi
-            email = EmailMessage(
-                email_subject,
-                messageConfirm,
-                settings.EMAIL_HOST_USER,
-                [Couturier.email]
-            )
-
-            email.fail_silently = False  #  Ceci permet d'indiquer les eventuelles erreurs liees a l'envoi du mail
-            email.send() # Envoi
-
-            print(Couturier.email)
-            return render(request, 'accounts/verification.html')
+        return redirect('nouveauPasse')
 
 
     return render(request, "accounts/nouveauPasse.html")
@@ -507,8 +454,7 @@ def fin(request, uidb64, token): # cette fonction genere le lien de confimation 
         user.is_active = True  # C'est lorsqu'on clique sur le lien de confirmation que l'utilisateur est actif
         user.save() # On l'enrregistre
         messages.success(request, "Congratulations !!! Votre compte a ete activated")
-        #succes = "Vous ave"
-        return redirect("connexion")
+        return redirect("nouveauPasse")
     
     else:
         messages.error(request, "Echec d'activation de votre compte. Reessayer plutard !!!")
@@ -519,7 +465,7 @@ def fin(request, uidb64, token): # cette fonction genere le lien de confimation 
 
 # Pour confirmer le mot de passe renitialise
 
-''''def confirmer(request, *args, **kwargs):
+def confirmer(request, *args, **kwargs):
     #.objects.get(email=email)
 
     if request.method == "GET":
@@ -538,10 +484,9 @@ def fin(request, uidb64, token): # cette fonction genere le lien de confimation 
         User.password=password
         User.save()
         messages.success(request, "Vous venez de modifier votre mot de passe")
-    return render(request, 'accounts/connexion')'''
+    return render(request, 'accounts/connexion')
 
 # Recuperation des donnees du Client
-@login_required
 def client(request):
     if request.method =="GET":
         '''if request.method == "GET":
@@ -559,10 +504,10 @@ def client(request):
 
 
         #commandes = Commande.objects.all().order_by("-Date_Depot_Model")   # Recuperation des commandes selon la date de prise de commande
-        '''pagination = Paginator(clients, 5)  # Affichage de  5 commandes par pages
+        pagination = Paginator(clients, 5)  # Affichage de  5 commandes par pages
         page = request.GET.get('page') # obtention de la page
-        clients_page = pagination.get_page(page)'''
-        customer ={"clients" : clients}
+        clients_page = pagination.get_page(page)
+        customer ={"clients_page" : clients_page}
 
         return render(request, 'accounts/Client.html', customer)
 
@@ -664,7 +609,7 @@ def client(request):
 
 
 
-@login_required
+
 def commande(request):
 
     nomError = None
@@ -984,35 +929,22 @@ def commande(request):
 
   
 # Liste des commandes
-@login_required
 def liste_commande(request):
 
     commandes = Commande.objects.all().order_by("-Date_Depot_Model")   # Recuperation des commandes selon la date de prise de commande
-    '''pagination = Paginator(commandes, 5)  # Affichage de  5 commandes par pages
+    pagination = Paginator(commandes, 5)  # Affichage de  5 commandes par pages
     page = request.GET.get('page') # obtention de la page
-    commandes_page = pagination.get_page(page)'''
-    cmd ={"commandes" : commandes}
+    commandes_page = pagination.get_page(page)
+    cmd ={"commandes_page" : commandes_page}
 
 
 
     return render(request, 'accounts/ListeCommande.html', cmd)
 
 
-def voirPlus(request):
-
-    commandes = Commande.objects.all().order_by("-Date_Depot_Model")   # Recuperation des commandes selon la date de prise de commande
-    ###commandes_page = pagination.get_page(page)
-    cmd ={"commandes" : commandes}
-
-
-
-    return render(request, 'accounts/Detail.html', cmd)
-
-
 
 
 # Modification d'une commande
-@login_required
 def modifier_commande(request, commande_id):
 
 
@@ -1313,7 +1245,7 @@ def modifier_commande(request, commande_id):
     return render(request, "accounts/ModifierCommande.html")
 
 # Suppression d'une commande
-@login_required
+
 def supprimer_commande(request, commande_id):
     if request.method == "GET":
 
@@ -1330,7 +1262,7 @@ def supprimer_commande(request, commande_id):
     messages.success(request, "Cette commande a ete bien supprimee")
     return redirect('liste_commande')
 
-@login_required
+  
 def profil(request, profil_id):
     if request.method == "GET":
         #commandes = Commande.objects.all()
@@ -1338,8 +1270,9 @@ def profil(request, profil_id):
         clients = Client.objects.filter(pk=profil_id)
         commandes = Commande.objects.filter(Telephone=profil_id)
         
+        
         context ={  'clients': clients, 'commandes': commandes }
-        return render (request, "accounts/Commandes_de_chaque_client.html", context=context)
+        return render (request, "accounts/Commandes_de_chaque_client.html", context)
     
 '''def facture(request, commande_id):
     #commande = Commande.objects.filter(pk=commande_id)
@@ -1351,8 +1284,6 @@ def profil(request, profil_id):
         context = {"facture": facture, "commandes": commande}
         return render(request, "accounts/Facture.html", context)'''
 
-
-@login_required
 def facture(request, commande_id):
     #commande = Commande.objects.filter(pk=commande_id)
     if request.method == "GET":
@@ -1362,11 +1293,12 @@ def facture(request, commande_id):
         #facture = Facture.objects.filter(pk = id )
         facture = Facture.objects.get(command = commande)
         #context = {"facture": facture, "commandes": commande}
-        context = {"facture" : facture, 'commande': commande}
+        company = User.username
+        context = {"facture" : facture, 'commande': commande, 'company':company}
         return render(request, "accounts/Facture.html", context)
 
 
-@login_required  
+   
 def historique(request):
     today = timezone.now().date()     # on recupere la date d'aujourd'hui
     troisjoursavant = today - timedelta(days=1)  # on calcul le nombre de jours (dans notre cas, 3)
@@ -1375,7 +1307,6 @@ def historique(request):
     context = {'commandes': commandes}
     return render(request, 'accounts/Historique.html', context)
 
-@login_required
 def rendezVous(request):
     maintenant = datetime.now()  # on recupere  la date et l'heure actuelle
 
@@ -1425,7 +1356,7 @@ def generationPdf(request):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response '''
 
-@login_required
+
 def generationPdf(request):
     #facture = Facture.objects.all() # J'appelle ma facture correspondant a l'id de la commande
     clients =  Client.objects.all()
@@ -1503,7 +1434,6 @@ def generationPdf(request):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response'''
 
-@login_required
 def facturePdf(request, commande_id):
     #facture = Facture.objects.all() # J'appelle ma facture correspondant a l'id de la commande
     #factures =  Facture.objects.all()

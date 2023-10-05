@@ -9,14 +9,18 @@ from django.contrib.auth import views as auth_views
 #app_name = "accounts"  # ce nom sera utilise pour creer des liens dans le but d'eviter les conflits de noms
 
 urlpatterns = [
-    path('', views.home, name="home"),
+   # path('', views.home, name="home"),
 
-    path('connexion', views.connexion, name="connexion"),
+    path('', views.connexion, name="connexion"),
     path('inscription', views.inscription, name="inscription"),
     path('deconnexion', views.deconnexion, name="deconnexion"),
     #path('activate/<uidb64>/<token>/', views.activate, name="activate"),
 
     path('activate/<str:uidb64>/<str:token>/', views.activate, name='activate'),
+    #path('Confirmeration/<str:uidb64>/<str:token>/', views.Confirmeration, name='Confirmeration'),
+    path('fin/<str:uidb64>/<str:token>/', views.fin, name='fin'),
+
+
 
     #path('reset_password/', views.PasswordResetView.as_view(), name="reset_password"), # Pour renitialiser le mot de passe
     #path('reset_password_send/', views.PasswordChangeDoneView.as_view(), name="password_reset_done"), # Envoi  le mot de passe renitialiser dans la boite mail de l'utilisateur
@@ -24,16 +28,26 @@ urlpatterns = [
     #path('reset_password_complete/', views.PasswordResetCompleteView.as_view(), name="password_reset_complete"), # Pour confirmer la renitialisation du mot de passe
     
     #path('password_reset/', auth_views.PasswordResetView.as_view(), name="password_reset"), # Pour renitialiser le mot de passe
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name = "accounts/password-reset.html"), name="password_reset"), # Pour renitialiser le mot de passe
-    path('password_reset_done/', auth_views.PasswordChangeDoneView.as_view(template_name = "accounts/password-reset-done.html"), name="password_reset_done"), # Envoi  le mot de passe renitialiser dans la boite mail de l'utilisateur
-    path('reset/<str:uidb64>/<str:token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "accounts/password-reset-confirm.html"), name="password_reset_confirm"), # Pour confirmer la renitialisation du mot de passe
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "accounts/password-reset-complete.html"), name="password_reset_complete"), # Pour confirmer la renitialisation du mot de passe
+    
+    
+    
+    #path('password_reset/', auth_views.PasswordResetView.as_view(template_name = "accounts/password-reset.html"), name="password_reset"), # Pour renitialiser le mot de passe
+    #path('password_reset_done/', auth_views.PasswordChangeDoneView.as_view(template_name = "accounts/password-reset-done.html"), name="password_reset_done"), # Envoi  le mot de passe renitialiser dans la boite mail de l'utilisateur
+    #path('reset/<str:uidb64>/<str:token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "accounts/password-reset-confirm.html"), name="password_reset_confirm"), # Pour confirmer la renitialisation du mot de passe
+    #path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "accounts/password-reset-complete.html"), name="password_reset_complete"), # Pour confirmer la renitialisation du mot de passe
+    
+    
+    
+    
     #path('reset/<str:uidb64>/<str:token>/', views.confirmer, name="confirmer"), # Pour confirmer la renitialisation du mot de passe
 
     path('client/', views.client, name="client"),
     path('commande/', views.commande, name="commande"),
 
     path('liste_commande/', views.liste_commande, name="liste_commande"),
+
+    path('voirPlus/', views.voirPlus, name="voirPlus"),
+
    # path('<int:commande_id>/', views.show, name="show"),
    # path('ajouter_commande/', views.ajouter_commande, name="ajouter_commande"),
     path('modifier_commande/<int:commande_id>/', views.modifier_commande, name="modifier_commande"),
@@ -52,6 +66,6 @@ urlpatterns = [
    # path('<int:facture_id>/', views.telecharger_facture, name='telecharger_facture'),
 
 
-
-
+    path("renitialiser/", views.renitialiser, name="renitialiser"),
+    path('nouveauPasse/<str:uidb64>/<str:token>/', views.nouveauPasse, name="nouveauPasse"),
 ]
