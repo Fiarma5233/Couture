@@ -6,13 +6,14 @@
 {% block general %}
 {% load static %}
 
-
+<!--<p>Salut a tous</p>
 
 <h1>Liste des commandes de {{ Client.Nom }}</h1>
 <p><a href="{% url 'commande' %}"> Ajouter une commande</a></p>
 <p><a href="{% url 'client' %}"> Voir les clients</a></p>
 
 
+<p>Salut a tous</p>
 
 
 <table>
@@ -118,6 +119,108 @@
       background-color: #c4e410; /* Couleur de fond pour l'en-tête */
     }
     caption{ color: blue;}
-  </style>
+  </style>-->
+
+
+
+
+
+<link rel="stylesheet" href="{% static 'accounts/commande.css' %}">
+
+<div  class="tout">
+  <h1>Commandes </h1>
+
+<div class="outer-wrapper">
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th> Date </th>
+            <th> Client</th>
+            <th> Telephone</th>
+            <th> Modele</th>
+            <th> Pagnes</th>
+            <th> Dos</th>
+            <th>Epaule</th>
+            <th>Poitrine</th>
+            <th>  Longueur Manche</th>
+            <th> Tour Manche</th>
+            <th> Longueur Taille</th>
+            <th>Col</th>
+            <th> Tour Taille</th>
+            <th> Pinces</th>
+            <th> Longueur Camisole</th>
+            <th> Longueur Robe </th>
+            <th> Frappe </th>
+            <th>  Longueur Chemise</th>
+            <th>Bassin</th>
+            <th> Ceinture</th>
+            <th> Cuisse</th>
+            <th> Genoux</th>
+            <th> Longueur Jupe</th>
+            <th> Longueur Poignet</th>
+            <th> Longueur Pantalon</th>
+
+            <th> Bas</th>
+
+            <th> Prix</th>
+            <th> Avance</th>
+            <th> Rendez-Vous</th>
+            
+        </tr>
+    </thead>
+    {% for commande in commandes %}
+
+
+    <tbody>
+        <tr>
+            <td> {{ commande.Date_Depot_Model  }}</td>
+            <!--<td> <a href="{% url 'client' %}">{{ commande.Nom|upper }} </a></td>-->
+            <td> {{ commande.Nom|upper }} </td>
+
+            <td> {{ commande.Telephone  }}</td>
+            <td> {{ commande.Modele_Couture  }}</td>
+            <td> {{ commande.Nombre_Pagnes  }}</td>
+            <td> {{ commande.Dos  }}</td>
+            <td> {{ commande.Epaule  }}</td>
+            <td> {{ commande.Poitrine  }}</td>
+            <td> {{ commande.Longueur_Manche  }}</td>
+            <td> {{ commande.Tour_Manche  }}</td>
+            <td> {{ commande.Longueur_Taille  }}</td>
+            <td> {{ commande.Col  }}</td>
+
+            <td> {{ commande.Tour_Taille  }}</td>
+            <td> {{ commande.Pince_longueur_seins  }}</td>
+            <td> {{ commande.Longueur_Camisole  }}</td>
+            <td> {{ commande.Longueur_Robe  }}</td>
+            <td> {{ commande.Frappe  }}</td>
+
+            <td> {{ commande.Longueur_Chemise  }}</td>
+            <td> {{ commande.Messure_Bassin  }}</td>
+            <td> {{ commande.Mesure_Ceinture  }}</td>
+            <td> {{ commande.Mesure_Cuisse  }}</td>
+            <td> {{ commande.Mesure_Genoux  }}</td>
+            <td> {{ commande.Longeur_Jupe  }}</td>
+            <td> {{ commande.Longueur_Poignet  }}</td>
+            <td> {{ commande.Longueur_Pantalon }}</td>
+            <td> {{ commande.Bas  }}</td>
+
+            <td> {{ commande.Prix_Couture  }}</td>
+            <td> {{ commande.Avance  }}</td>
+            <td> {{ commande.Date_Retrait_Model  }}</td>
+
+            
+        </tr>
+
+
+  {% endfor %}
+  
+    </tbody>
+</table>
+</div>
+</div>
+
+
+
 {% endblock %}
 

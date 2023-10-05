@@ -2,59 +2,94 @@
 
 
 
-{% block general %}
-{% load static %}
 
 
 
 
+  
+      <style>
 
-<table >
-    <caption>Facture n°{{ facture.id }}</caption>
-    <tr>
-        <th> Date</th>
-        <th> Client</th>
-        <th> Telephone</th>
-        <th> Modele</th>
-        <th> Prix de la couture</th>
-        <th> Avance</th>
-        <th> Reste a solder</th>
-        
-    </tr>
-
-    <tr>
-        <td> {{ facture.Date}} </a></td>
-        <td> {{ facture.Nom  }}</td>
-        <td> {{ facture.Telephone  }}</td>
       
+        /*.facture{
+          padding: auto;
+          max-width: 700px;
+          margin: auto;
+        }
+       .facture p label{
+        margin-left: 120px;
+        
+       }
+       .facture p label strong{
+        float: inline-end;
+        margin-right: 120px;
+       }
 
-        <td> {{ facture.Modele_couture  }}</td>
-        <td> {{ facture.Prix_Couture  }}</td>
-        <td> {{ facture.Avance  }}</td>
-        <td> {{ facture.Solde }}</td>
-    </tr>
-</table>
+       .facture button{
+ 
+        margin-top: 15px;
+        width: 100px;
+        height: 30px;
+        border-radius: 3pc;
+
+        align-content: center;
+
+
+}*/
+       
+
+      </style>
 
 
 
-<style>
-  /* Style pour le tableau */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
+  <div class="facture" style=" margin-top: 50px; " >
+
+
+
+
+      <p>
+        <label >Facture :<strong>n°{{ facture.id }}
+        </strong> </label>
+      </p>
+
+      <p>
+        <label>Date<strong>{{ facture.Date }}
+          </strong>
+        </label >
+      </p>
+
+      <p>
+        <label >Client<strong>{{ facture.Nom }}
+        </strong>
+      </label>
+      </p>
+
+      <p>
+        <label >Telephone<strong>{{ facture.Telephone }}
+        </strong>
+      </label>
+      </p>
+
+      <p>
+        <label >Modele<strong>{{ facture.Modele_couture }}
+        </strong>
+      </label>
+      </p>
+
+
+      <p>
+        <label >Prix<strong>{{ facture.Prix_Couture }}</strong></label>
+      </p>
+
+      <p>
+        <label >Avance<strong>{{ facture.Avance }}</strong></label>
+
+      </p>
+
+      <p>
+        <label >Reste<strong >{{ facture.Solde }}</strong></label>
+      </p>
+  </div>
   
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #ec1782;
-  }
-</style>
 
 
-{% endblock %}
 

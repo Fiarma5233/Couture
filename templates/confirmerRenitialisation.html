@@ -1,0 +1,13 @@
+
+
+
+
+{% autoescape off %}
+
+Bonjour {{ name }}
+Renitialisez votre mot de passe en cliquant sur le lien ci-dessous!!!
+Lien : https//{{domain}}{% url 'Confirmeration' uidb64=uid token=token %}
+
+{% endautoescape %}
+
+

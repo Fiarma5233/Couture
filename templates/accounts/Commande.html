@@ -3,9 +3,30 @@
 {% extends 'global.html' %}
 
 {% block general %}
+<br>
+    <br>
+    <br>
+
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'accounts/Inscription.css' %}">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -55,331 +76,221 @@
 
 </style>-->
 
-<center class="formcenter">
-
 <div class="container">
-    <h1>Enregistrer votre commande </h1>
-<div class="progress-bar-container">
-    <div class="progress-bar"></div>
-</div>
+  <div class="title">Ajouter une commande</div>
+
 <form action="" method="post" class="form" id="formulaire">
   {% csrf_token %}
 
 
  
-  <!----
-      - les valeurs de "name" dans input  doivent correspondre aux memes noms que ceux de notre modele : Couturier
-      - form  a deux  attribut s:
-          - action : execute un mout de code 
-          - method : 
-       
-          - GET : pour recevoir les donnees . On peut utiliser le GET pour garder des infos dans la db
 
- <strong class="error">{{ Nom_erreur }} Salut</strong><br>
 
-      -->
+  <div class="user-details">
+    <div class="input-box">
+        <span class="details">Nom</span>
+        <input type="text"  name="Nom" > 
+        <strong class="error">{{ nomError }}</strong>    
+    </div>
 
-  <!-- Barre de progression -->
-  <style>
-    .error{
-        color: red;
-        /* styles.css */
-    }
-</style>
+    <div class="input-box">
+      <span class="details">Telephone</span>
+      <input type="number" name="Telephone"  >
+      <strong class="error">{{ telError }}</strong>    
+    </div>  
 
-    <!--<div class="form-group ">
-      <label for="Nom" > Nom <input type="text"  name="Nom" id="nom" placeholder="Nom et prenom du client "> </label>   <br> <br><br>
-        <strong class="error">{{ nomError }} </strong>
+    <div class="input-box">
+      <span class="details">Modele de la couture</span>
+      <input type="text"  name="Modele_Couture"  > 
+      <strong class="error">{{ modele }}</strong>    
+    </div>
 
-      <label for="Telephone"  > Telephone <input type="number" name="Telephone" id="Telephone" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-    
-      <label for="Modele_Couture" > Modele de la couture <input type="text"  name="Modele_Couture" id="nom" placeholder="votre nom de famille"> </label>   <br> <br><br>
-  
-      <label for="Nombre_Pagnes"  > Nombre de pagnes <input type="text" name="Nombre_Pagnes" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details">Nombre de pagnes</span>
+      <input type="text" name="Nombre_Pagnes"  > 
+      <strong class="error">{{ pagne }}</strong>    
+    </div>
 
-      <label for="Dos"  > Mesure du dos<input type="text" name="Dos" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details"> Mesure du dos</span>
+      <input type="text" name="Dos"  > 
+      <strong class="error">{{ dos }}</strong>    
+    </div>
 
-      <label for="Epaule"  > Mesure de l'epaule  <input type="number" name="Epaule" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details"> Mesure de l'epaule </span>
+      <input type="number" name="Epaule" >
+      <strong class="error">{{ epaule }}</strong>    
+    </div>
 
-      <label for="Poitrine"  > Mesure de la poitrine  <input type="number" name="Poitrine" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details">Mesure de la poitrine </span>
+      <input type="number" name="Poitrine"  > 
+      <strong class="error">{{ poitrine }}</strong>    
+    </div>
 
+    <div class="input-box">
+      <span class="details">Longueur de la manche </span>
+      <input type="number" name="Longueur_Manche" >
+      <strong class="error">{{ lgm }}</strong>    
     </div>
 
 
-    
-    <div class="form-group hidden">
-      
-      <label for="Longueur_Manche"  > Longueur de la manche  <input type="number" name="Longueur_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details"> Tour de la manche   </span>
+      <input type="number" name="Tour_Manche"  >
+      <strong class="error">{{ trm }}</strong>    
+    </div>
 
-      <label for="Tour_Manche"  > Tour de la manche <input type="number" name="Tour_Manche" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
+    <div class="input-box">
+      <span class="details">  Longueur de la taille   </span>
+      <input type="number" name="Longueur_Taille">
+      <strong class="error">{{ lgt }}</strong>    
+    </div>
 
-      <label for="Longueur_Taille"  >  Longueur de la taille<input type="number" name="Longueur_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Col"  >  Col<input type="number" name="Col" id="Col" required placeholder="Mesure de la col"> </label> <br> <br><br>
-
-      <label for="Tour_Taille"  > Tour de la taille <input type="number" name="Tour_Taille" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Pince_longueur_seins"  >Pince de la longueur aux seins <input type="number" name="Pince_longueur_seins" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Longueur_Camisole"  > Longueur de la camisole <input type="number" name="Longueur_Camisole" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
+    <div class="input-box">
+      <span class="details"> Col  </span>
+      <input type="number" name="Col" >
+      <strong class="error">{{ col }}</strong>    
     </div>
 
 
+    <div class="input-box">
+      <span class="details"> Tour de la taille   </span>
+      <input type="number" name="Tour_Taille" >
+      <strong class="error">{{ trt }}</strong>    
+    </div>
 
+    <div class="input-box">
+      <span class="details"> Pinces  </span>
+      <input type="number" name="Pince_longueur_seins" >
+      <strong class="error">{{ pls }}</strong>    
+    </div>
 
-    <div class="form-group hidden">
-     
-      <label for="Longueur_Robe"  > Longueur de la robe <input type="number" name="Longueur_Robe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Frappe"  > Frappe<input type="number" name="Frappe" id="Frappe" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Longueur_Chemise"  > Longueur de la chemise <input type="number" name="Longueur_Chemise" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Messure_Bassin"  > Longueur du bassin<input type="number" name="Messure_Bassin" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Mesure_Ceinture"  > Longueur de la ceinture <input type="number" name="Mesure_Ceinture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Mesure_Cuisse"  > Longueur de la cuisse <input type="number" name="Mesure_Cuisse" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Mesure_Genoux"  > Longueur des genoux <input type="number" name="Mesure_Genoux" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
+    <div class="input-box">
+      <span class="details"> Longueur de la camisole   </span>
+      <input type="number" name="Longueur_Camisole" id="nom" > 
+      <strong class="error">{{ lgc }}</strong>    
     </div>
 
 
-
-  
-    <div class="form-group hidden">
-      
-      <label for="Longeur_Jupe"  > Longueur de la jupe <input type="number" name="Longeur_Jupe" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-   
-      <label for="Longueur_Poignet"  > Longueur du poignet <input type="number" name="Longueur_Poignet" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Longueur_Pantalon"  > Longueur Pantalon <input type="number" name="Longueur_Pantalon" id="Longueur_Pantalon" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Bas"  >Bas <input type="number" name="Bas" id="Bas" required placeholder="Bas"> </label> <br> <br><br>
-
-      <label for="Prix_Couture"  > Prix de la couture <input type="number" name="Prix_Couture" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Avance"  >Avance<input type="number" name="Avance" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <label for="Date_Retrait_Model"  > Date de retrait <input type="datetime" name="Date_Retrait_Model" id="nom" required placeholder="Le nom de votre entreprise"> </label> <br> <br><br>
-
-      <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
+    <div class="input-box">
+      <span class="details"> Longueur de la robe    </span>
+      <input type="number" name="Longueur_Robe" id="nom" > 
+      <strong class="error">{{ lgr }}</strong>    
     </div>
- 
+
+    <div class="input-box">
+      <span class="details"> Frappe   </span>
+      <input type="number" name="Frappe" id="Frappe" >
+      <strong class="error">{{ frappe }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details"> Longueur de la chemise   </span>
+      <input type="number" name="Longueur_Chemise" id="nom" > 
+      <strong class="error">{{ lgch }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details"> Longueur du bassin  </span>
+      <input type="number" name="Messure_Bassin" id="nom" > 
+      <strong class="error">{{ mb }}</strong>    
+    </div>
 
 
-    <!- Boutons de navigation ->
-    <button id="precedent" class="hidden">Précédent</button>
-    <button id="suivant">Suivant</button>
-    <button id="submit" class="hidden">Soumettre</button>
+    <div class="input-box">
+      <span class="details"> Longueur de la ceinture  </span>
+      <input type="number" name="Mesure_Ceinture" id="nom" >
+      <strong class="error">{{ mc }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details"> Longueur de la cuisse  </span>
+      <input type="number" name="Mesure_Cuisse" id="nom" >
+      <strong class="error">{{ mcu }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">  Longueur des genoux   </span>
+      <input type="number" name="Mesure_Genoux" id="nom" > 
+      <strong class="error">{{ mg }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">  Longueur de la jupe   </span>
+      <input type="number" name="Longeur_Jupe" id="nom" > 
+      <strong class="error">{{ lgj }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">   Longueur du poignet  </span>
+      <input type="number" name="Longueur_Poignet" id="nom" >
+      <strong class="error">{{ lgpo }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">   Longueur du Pantalon  </span>
+      <input type="number" name="Longueur_Pantalon" id="Longueur_Pantalon"> 
+      <strong class="error">{{ lgpa }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">   Bas</span>
+      <input type="number" name="Bas"  > 
+      <strong class="error">{{ bas }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">    Prix de la couture </span>
+      <input type="number" name="Prix_Couture" id="nom" >
+      <strong class="error">{{ pc }}</strong>    
+    </div>
+
+
+    <div class="input-box">
+      <span class="details">   Avance </span>
+      <input type="number" name="Avance" id="nom" >
+      <strong class="error">{{ avance }}</strong>    
+    </div>
+
+    <div class="input-box">
+      <span class="details">   Rendez-Vous </span>
+      <input type="date" name="Date_Retrait_Model" id="nom" pattern="\d{4}-\d{2}-\d{2}" > 
+      <strong class="error">{{ dateError }}</strong>    
+    </div>
+
   </div>
 
-</form>
-</div>-->
+  <div class="button">
+    <input type="submit"  value="Enregistrer" id="sub">
 
+  </div>
+  </form>
+</div>
 
 
 
 
-      <label for="Nom" > Nom </label>   
-      <input type="text"  name="Nom" id="nom" > 
-      <br> 
-        <strong class="error">{{ nomError }} </strong><br>
 
-      <label for="Telephone"  > Telephone  </label>
-      <input type="number" name="Telephone" id="Telephone" >
-      <br>
-      <strong class="error">{{ telError }} </strong><br>
 
-      <label for="Modele_Couture" > Modele de la couture </label>
-      <input type="text"  name="Modele_Couture" id="nom" > 
-      <br> 
-      <strong class="error">{{ modele }} </strong><br>
 
-      <label for="Nombre_Pagnes"  > Nombre de pagnes </label> 
-      <input type="text" name="Nombre_Pagnes" id="nom" > 
-      <br> 
-      <strong class="error">{{ pagne }} </strong><br>
 
-      <label for="Dos"  > Mesure du dos</label> 
-      <input type="text" name="Dos" id="nom" > 
-      <br> 
-      <strong class="error">{{ dos }} </strong><br>
 
-      <label for="Epaule"  > Mesure de l'epaule   </label>
-      <input type="number" name="Epaule" id="nom" >
-      <br> 
-      <strong class="error">{{ epaule }} </strong><br>
 
-      <label for="Poitrine"  > Mesure de la poitrine  </label> 
-      <input type="number" name="Poitrine" id="nom" > 
-      <br> 
-      <strong class="error">{{ poitrine }} </strong><br>
 
 
-    
-      
-      <label for="Longueur_Manche"  > Longueur de la manche   </label>
-      <input type="number" name="Longueur_Manche" id="nom">
-      <br> 
-      <strong class="error">{{ lgm }} </strong><br>
 
 
-      <label for="Tour_Manche"  > Tour de la manche  </label> 
-      <input type="number" name="Tour_Manche" id="nom" >
-        <br> 
-      <strong class="error">{{ trm }} </strong><br>
 
 
-      <label for="Longueur_Taille"  > Longueur de la taille </label>
-      <input type="number" name="Longueur_Taille" id="nom" >
-    <br> 
-      <strong class="error">{{ lgt }} </strong><br>
 
 
 
-      <label for="Col"  >  Col </label>
-      <input type="number" name="Col" id="Col">
-    <br> 
-      <strong class="error">{{ col }} </strong><br>
-      
-      <label for="Tour_Taille"  > Tour de la taille  </label>
-      <input type="number" name="Tour_Taille" id="nom" >
-      <br> 
-      <strong class="error">{{ trt }} </strong><br>
 
-      <label for="Pince_longueur_seins"  >Pinces  </label> 
-      <input type="number" name="Pince_longueur_seins" id="nom" >
-<br> 
-      <strong class="error">{{ pls }} </strong><br>
 
 
-      <label for="Longueur_Camisole"  > Longueur de la camisole </label> 
-      <input type="number" name="Longueur_Camisole" id="nom" > 
-<br> 
-      <strong class="error">{{ lgc }} </strong><br>
 
-
-
-
-     
-      <label for="Longueur_Robe"  > Longueur de la robe </label>
-      <input type="number" name="Longueur_Robe" id="nom" > 
-      <br> 
-      <strong class="error">{{ lgr }} </strong><br>
-
-      <label for="Frappe"  > Frappe </label> 
-      <input type="number" name="Frappe" id="Frappe" >
-<br> 
-      <strong class="error">{{ frappe }} </strong><br>
-
-
-      <label for="Longueur_Chemise"  > Longueur de la chemise </label> 
-      <input type="number" name="Longueur_Chemise" id="nom" > 
-<br> 
-      <strong class="error">{{ lgch }} </strong><br>
-
-      <label for="Messure_Bassin"  > Longueur du bassin</label> 
-      <input type="number" name="Messure_Bassin" id="nom" > 
-      <br> 
-      <strong class="error">{{ mb }} </strong><br>
-
-
-      <label for="Mesure_Ceinture"  > Longueur de la ceinture  </label> 
-      <input type="number" name="Mesure_Ceinture" id="nom" >
-<br> 
-      <strong class="error">{{ mc }} </strong><br>
-
-
-      <label for="Mesure_Cuisse"  > Longueur de la cuisse  </label> 
-      <input type="number" name="Mesure_Cuisse" id="nom" >
-<br> 
-      <strong class="error">{{ mcu }} </strong><br>
-
-
-      <label for="Mesure_Genoux"  > Longueur des genoux </label>
-      <input type="number" name="Mesure_Genoux" id="nom" > 
-<br> 
-      <strong class="error">{{ mg }} </strong><br>
-
-
-
-  
-      
-      <label for="Longeur_Jupe"  > Longueur de la jupe </label> 
-      <input type="number" name="Longeur_Jupe" id="nom" > 
-      <br> 
-      <strong class="error">{{ lgj }} </strong><br>
-      
-      
-      <label for="Longueur_Poignet"  > Longueur du poignet  </label> 
-      <input type="number" name="Longueur_Poignet" id="nom" >
-      <br> 
-      <strong class="error">{{ lgpo }} </strong><br>
-
-      <label for="Longueur_Pantalon"  > Longueur Pantalon </label> 
-      <input type="number" name="Longueur_Pantalon" id="Longueur_Pantalon"> 
-<br> 
-      <strong class="error">{{ lgpa }} </strong><br>
-
-
-      <label for="Bas"  >Bas </label> 
-      <input type="number" name="Bas" id="Bas" > 
-<br> 
-      <strong class="error">{{ bas }} </strong><br>
-
-
-      <label for="Prix_Couture"  > Prix de la couture  </label> 
-      <input type="number" name="Prix_Couture" id="nom" >
-<br> 
-      <strong class="error">{{ pc }} </strong><br>
-
-      <label for="Avance"  >Avance </label>
-      <input type="number" name="Avance" id="nom" >
-<br> 
-      <strong class="error">{{ avance }} </strong><br>
-
-      <label for="Date_Retrait_Model"  > Date de retrait </label>
-      <input type="date" name="Date_Retrait_Model" id="nom" pattern="\d{4}-\d{2}-\d{2}" > 
-<br> 
-<strong class="error">{{ dateError }} </strong><br>
-
-
-
-      <input type="submit" value="Valider" id="sub">   <p><a href="{% url 'commande' %}"> Se connecter</a></p>
-
-
-    <button id="submit" class="hidden">Soumettre</button>
-  
-
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</center>
 
 
 
