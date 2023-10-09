@@ -139,6 +139,16 @@ table td {
   }
   
 
+  table td a{
+    color: rgb(19, 19, 36);
+    
+}
+
+table td a:hover{
+    color: orange;
+    
+}
+
 button:hover{
     color: orange;
     background-color: green;

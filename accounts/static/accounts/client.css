@@ -7,7 +7,7 @@
 
 body{
     /*margin-top: -50px;*/
-    margin-top: -30px;
+    margin-top: -5px;
 
 }
 
@@ -20,8 +20,10 @@ a:hover{
 }
 
 
+
 .tout{
-    margin-top: 30px;
+    margin-top: 60px;
+    top: 50pc;
 }
 
 .heading {
@@ -38,6 +40,11 @@ a:hover{
     background: transparent;
     padding: 7px;
     
+}
+
+
+.tout{
+    margin-top: 30px;
 }
 
 .main{
@@ -90,6 +97,8 @@ table {
 table th{
     position: sticky; 
     top: 0px;
+    background-color: darkgreen;
+
     
     /*background-color: #11da2c;*/
     color: rgb(241, 245, 179);

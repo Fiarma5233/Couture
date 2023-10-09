@@ -164,7 +164,6 @@ body{
 
 body{
     background-color: rgb(168 188 140);
-
 }
 
 
@@ -190,6 +189,7 @@ body{
     border-radius: 5px;
     margin: 0 auto;
     margin-top: 60px;
+    overflow-y: scroll;
 
 
 
@@ -225,7 +225,7 @@ hr{
     position: absolute;
     height: 3px;
     width: 118px;
-    background: yellow;
+    
     
     bottom: -5px;
         
